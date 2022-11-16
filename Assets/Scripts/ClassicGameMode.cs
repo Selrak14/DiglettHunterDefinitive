@@ -24,11 +24,14 @@ public class ClassicGameMode : MonoBehaviour
     public float TimeBeteenSpawn = .5f;
 
     // ControlDelTiempo
+    float TiempoRealDeInicioDelClassicGameMode;
     public float TiempoEsperaInicio = 6f;
     public float Timer = 3f;
     public float TiempoDeLaPartida = 30f;
     public bool TiempoDePartidaReverso = true;
-    private float TiempoTranscurrido = 0;
+    float TimeNormalizado;
+    bool juegoHaTerminado;
+    
 
     
 
@@ -58,7 +61,7 @@ public class ClassicGameMode : MonoBehaviour
         paused = false;
         // playerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<TheGame>();
         TimerInstance = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
-        TiempoTranscurrido = 0f;
+        TiempoRealDeInicioDelClassicGameMode = Time.time;
         StartInGameTime();
         MenuDePausa.SetActive(paused);
         // StartCoroutine(FinalizarPartidaPorTiempo(TiempoDeLaPartida+Timer));
@@ -102,6 +105,7 @@ public class ClassicGameMode : MonoBehaviour
 
     public void WhenGameEnds(string level)
     {
+        Time.timeScale = 1f;
         playerInstance.storeData(PuntuacionPartida);
         SceneManager.LoadScene(level);
     }
@@ -121,8 +125,8 @@ public class ClassicGameMode : MonoBehaviour
         if(RandomPosition)
         {
             int seleccion = Random.Range (0, listOfPosition.Count);
-            Debug.Log(seleccion);
-            Debug.Log(listOfPosition[seleccion]);
+            // Debug.Log(seleccion);
+            // Debug.Log(listOfPosition[seleccion]);
             return listOfPosition[seleccion];
         }
         else
@@ -157,15 +161,23 @@ public class ClassicGameMode : MonoBehaviour
             TiempoDePartidaTexto.SetText("0");
         }
     }
-    private void SetInGameTime()
+    private void SetInGameTime(float tiempo)
     {
+
         if(TiempoDePartidaReverso)
         {
-            TiempoDePartidaTexto.SetText(""+Mathf.Ceil((TiempoDeLaPartida + TiempoEsperaInicio)-Time.time));
+            tiempo = (TiempoDeLaPartida + TiempoEsperaInicio)-tiempo;
+            float minutes = Mathf.Floor(tiempo / 60);
+            float seconds = tiempo%60;
+            // TiempoDePartidaTexto.SetText(""+Mathf.Ceil((TiempoDeLaPartida + TiempoEsperaInicio)-tiempo));
+            TiempoDePartidaTexto.SetText(string.Format("{0}:{1}", minutes, Mathf.Floor(seconds)));
         }
         else
         {
-            TiempoDePartidaTexto.SetText(""+Mathf.Ceil(Time.time));
+            float minutes = Mathf.Floor(tiempo / 60);
+            float seconds = tiempo%60;
+            TiempoDePartidaTexto.SetText(""+Mathf.Ceil(tiempo));
+            TiempoDePartidaTexto.SetText(string.Format("{0}:{1}", minutes, Mathf.Floor(seconds)));
         }
         
     }
@@ -179,11 +191,10 @@ public class ClassicGameMode : MonoBehaviour
     }
     private void JuegoTerminado()
     {
+        juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
-        paused=true;
+        paused=!paused;
         MenuDeFin.SetActive(true);
-        Debug.Log("JUEGO EN PAUSA");
-        
     }
 
     // IEnumerator FinalizarPartidaPorTiempo(float tiempo)
@@ -201,21 +212,22 @@ public class ClassicGameMode : MonoBehaviour
 
     void OnGUI()
     {
-        TiempoTranscurrido +=Time.deltaTime;
-        Debug.Log("TiempoTranscurrido: "+Time.time);
-        if(Time.time >= TiempoDeLaPartida+TiempoEsperaInicio)
+        TimeNormalizado = Time.time - TiempoRealDeInicioDelClassicGameMode;
+        if(juegoHaTerminado)return;
+        
+        if(TimeNormalizado >= TiempoDeLaPartida+TiempoEsperaInicio)
         {
             JuegoTerminado();
         }
 
-        if(Time.time >= TiempoEsperaInicio & Time.time <= TiempoEsperaInicio+TiempoDeLaPartida)
+        if(TimeNormalizado >= TiempoEsperaInicio & TimeNormalizado <= TiempoEsperaInicio+TiempoDeLaPartida)
         {
-            SetInGameTime();
+            SetInGameTime(TimeNormalizado);
         }
 
         if (TimerInstance != null )
         {
-            TimerInstance.ModificarTexto(Time.time, TiempoEsperaInicio);
+            TimerInstance.ModificarTexto(TimeNormalizado, TiempoEsperaInicio);
         }
 
         
@@ -242,6 +254,4 @@ public class ClassicGameMode : MonoBehaviour
         }
     }
 }
-
-
 

@@ -25,7 +25,7 @@ public class DiglettBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.timeSinceLevelLoad-initializationTime);
+        // Debug.Log(Time.timeSinceLevelLoad-initializationTime);
         if(Time.timeSinceLevelLoad-initializationTime >= TimeAlive)
         {
             Destroy(gameObject);
