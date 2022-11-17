@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
 
     public GameObject ShopMenu;
     public GameObject LevelsMenu;
+    public Sprite[] sprites;
 
     private int currentScene;
     CameraMovement camara;
@@ -39,6 +40,16 @@ public class MenuController : MonoBehaviour
     }
 
 
+    public void RandomGame()
+    {
+        string[] Levels = { "ClassicGame", "TimeTrial", "BattleMode" };
+        string level = Levels[(int)Random.Range(0, 3)];
+        Debug.Log("Nivel al que moverse: " + level);
+        //SceneManager.LoadScene(level);
+    }
+
+    //Animations Shop and Modes(Levels)
+
     public void ShowShop()
     {
 
@@ -67,5 +78,27 @@ public class MenuController : MonoBehaviour
         Debug.Log("Levels Closed");
         camara.CloseLevelsAnim();
         //LevelsMenu.SetActive(false);
+    }
+
+    public void ShowOptions()
+    {
+
+        Debug.Log("Options Opened");
+        camara.ShowOptionsAnim();
+    }
+
+    public void CloseOptions()
+    {
+        Debug.Log("Options Closed");
+        camara.CloseOptionsAnim();
+    }
+
+
+    // Map Changer
+
+    public void ChangeMap(int Map)
+    {
+        Debug.Log("Map "+Map);
+        GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = sprites[Map];
     }
 }
