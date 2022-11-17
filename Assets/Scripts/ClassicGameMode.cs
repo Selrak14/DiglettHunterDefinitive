@@ -103,9 +103,9 @@ public class ClassicGameMode : MonoBehaviour
             // Debug.Log("VALOR ENVIADO A UI SHOW: "+value); ui.ShowPauseMenu(value);
         }
     }
-    public void AddPuntuation()
+    public void AddPuntuation(int puntos)
     {
-        PuntuacionPartida++;
+        PuntuacionPartida+=puntos;
         TextoPuntuacion.SetText(PuntuacionPartida.ToString());
 
     }

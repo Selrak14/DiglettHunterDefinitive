@@ -68,6 +68,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6190487180704419948, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: puntuacionDiglett
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190487180704419948, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
       propertyPath: ContraRelojTiempoAnyadir
       value: 3
       objectReference: {fileID: 0}

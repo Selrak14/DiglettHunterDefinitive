@@ -1795,6 +1795,10 @@ MonoBehaviour:
   TextoPuntuacion: {fileID: 1680928459}
   TiempoDePartidaTexto: {fileID: 1604638731}
   ModoContraReloj: 0
+  DiglettList:
+  - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+  - {fileID: 8551307676804739593, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
+  - {fileID: 8991745768265889118, guid: b8c565679c9e8ef4e93ba5e9c8b6540e, type: 3}
   RandomPosition: 1
   listOfPosition:
   - {x: -4, y: 3}
@@ -1803,9 +1807,9 @@ MonoBehaviour:
   - {x: 0, y: 0}
   DiglettBase: {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
   TimeBeteenSpawn: 2
-  TiempoEsperaInicio: 2.65
+  TiempoEsperaInicio: 3
   _Timer: 0
-  TiempoDeLaPartida: 45
+  TiempoDeLaPartida: 30
   TiempoDePartidaReverso: 1
   Acelerador: 0.1
 --- !u!1 &2034780195

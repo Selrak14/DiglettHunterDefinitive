@@ -13,6 +13,7 @@ public class DiglettBase : MonoBehaviour
     private float initializationTime;
     public float TimeAlive = 2f;
     public float ContraRelojTiempoAnyadir = 1f;
+    public int puntuacionDiglett = 1;
     int DiglettType; // PARA CUANDO TENGAMOS MAS DIGLETS
 
     // Start is called before the first frame update
@@ -64,7 +65,7 @@ public class DiglettBase : MonoBehaviour
             DiglettGolpeado.enabled = true;
             DiglettNormal.enabled = false;
             // AÑADIR PUNTOS
-            GameInstance.AddPuntuation();
+            GameInstance.AddPuntuation(puntuacionDiglett);
             GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
             Debug.Log("Box Clicked!");
         }
