@@ -29,8 +29,10 @@ public class DiglettBase : MonoBehaviour
     void Update()
     {
         // Debug.Log(Time.timeSinceLevelLoad-initializationTime);
+        // Comprovar que no vive mas de la cuenta 
         if(Time.timeSinceLevelLoad-initializationTime >= TimeAlive)
         {
+            GameInstance.AnyadirPosicion(gameObject.transform.position);
             Destroy(gameObject);
         }
     }
@@ -43,6 +45,7 @@ public class DiglettBase : MonoBehaviour
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        GameInstance.AnyadirPosicion(gameObject.transform.position);
         Destroy(gameObject);
     }
 

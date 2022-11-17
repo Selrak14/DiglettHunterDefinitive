@@ -19,11 +19,11 @@ public class ClassicGameMode : MonoBehaviour
 
     // Puntuaciones
     int PuntuacionPartida = 0;
-    public float TiempoContraRelojAñadido = 1;
 
     //Digletts
     public bool RandomPosition;
     public List<Vector2> listOfPosition = new List<Vector2>();
+    public List<int> BussyPositions = new List<int>();
     public GameObject DiglettBase;
     public float TimeBeteenSpawn = .5f;
 
@@ -73,6 +73,7 @@ public class ClassicGameMode : MonoBehaviour
         TimerInstance.InicioCuentaAtras(TiempoEsperaInicio);
         StartInGameTime();
         MenuDePausa.SetActive(paused);
+        BussyPositions.Add(1);
         // StartCoroutine(FinalizarPartidaPorTiempo(TiempoDeLaPartida+Timer));
 
 
@@ -140,10 +141,26 @@ public class ClassicGameMode : MonoBehaviour
 
 
     // PONER DIGLETTS
+
+    private void EliminarPosiciones(Vector2 posicion)
+    {
+        listOfPosition.Remove(posicion);
+    }
+
+    public void  AnyadirPosicion(Vector2 posicion)
+    {
+        listOfPosition.Add(posicion);
+    }
+
     private Vector2 seleccionaAgujero(bool RandomPosition)
     {
         if(RandomPosition)
         {
+            if(listOfPosition.Count == 0)
+            {
+                Debug.Log("No hay espacio disponible");
+                return new Vector2(100,100);
+            }
             int seleccion = Random.Range (0, listOfPosition.Count);
             // Debug.Log(seleccion);
             // Debug.Log(listOfPosition[seleccion]);
@@ -159,13 +176,18 @@ public class ClassicGameMode : MonoBehaviour
     private void Deal(GameObject prefab, Vector2 pos)
     {
         Debug.Log("New position for topo : " + pos);
-        // Vector2 pos = new Vector2(1,5);
-        float posX = pos[0];
-        float posY = pos[1];
-        var TopoInstancia = Instantiate<GameObject>(prefab);
-        // TopoInstancia.SetTopoPosition(id, images[id]);
-        TopoInstancia.transform.position = new Vector3(posX, posY, 0.0f);
-        TopoInstancia.transform.parent = gameObject.transform;
+        if(pos != new Vector2(100,100))
+        {
+            EliminarPosiciones(pos);
+            // Vector2 pos = new Vector2(1,5);
+            float posX = pos[0];
+            float posY = pos[1];
+
+            var TopoInstancia = Instantiate<GameObject>(prefab);
+            TopoInstancia.transform.position = new Vector3(posX, posY, 0.0f);
+            TopoInstancia.transform.parent = gameObject.transform;
+        }
+
     }
 
     // UI
@@ -286,9 +308,16 @@ public class ClassicGameMode : MonoBehaviour
     }
 
 
+
     // Update is called once per frame
     void Update()
     {   
+        // DEBUG 
+        if (Input.GetMouseButtonDown(2))
+        {
+            Debug.Log("Pressed middle click.");
+        }
+            
         
         // AL PAUSAR EL JUEGO
         if (Input.GetKeyDown(KeyCode.Escape))
