@@ -17,7 +17,7 @@ public class Reloj : MonoBehaviour
     void Start()
     {
         GameInstance = FindObjectOfType<ClassicGameMode>();
-        CadaSegundo = GameInstance.Timer;
+        CadaSegundo = GameInstance._Timer;
         reverso = GameInstance.TiempoDePartidaReverso;
         timeStart = GameInstance.TiempoDeLaPartida;
         TiempoQueFalta = timeStart + CadaSegundo;

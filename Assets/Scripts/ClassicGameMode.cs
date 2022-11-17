@@ -26,12 +26,14 @@ public class ClassicGameMode : MonoBehaviour
     // ControlDelTiempo
     float TiempoRealDeInicioDelClassicGameMode;
     public float TiempoEsperaInicio = 6f;
-    public float Timer = 3f;
+    public float _Timer;
     public float TiempoDeLaPartida = 30f;
     public bool TiempoDePartidaReverso = true;
     float TimeNormalizado;
     bool juegoHaTerminado;
-    
+    public float Acelerador = 0;
+    float _Acelerador;
+    bool IsAccelerating;
 
     
 
@@ -62,6 +64,8 @@ public class ClassicGameMode : MonoBehaviour
         // playerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<TheGame>();
         TimerInstance = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         TiempoRealDeInicioDelClassicGameMode = Time.time;
+        _Timer = TiempoEsperaInicio;
+        
         StartInGameTime();
         MenuDePausa.SetActive(paused);
         // StartCoroutine(FinalizarPartidaPorTiempo(TiempoDeLaPartida+Timer));
@@ -154,31 +158,49 @@ public class ClassicGameMode : MonoBehaviour
     {
         if(TiempoDePartidaReverso)
         {
-            TiempoDePartidaTexto.SetText(""+Mathf.Ceil(TiempoDeLaPartida));
+            float minutes = Mathf.Floor(TiempoDeLaPartida / 60);
+            float seconds = TiempoDeLaPartida%60;
+            TiempoDePartidaTexto.SetText(string.Format("{0}:{1}", minutes, Mathf.Floor(seconds)));
         }
         else
         {
             TiempoDePartidaTexto.SetText("0");
         }
     }
-    private void SetInGameTime(float tiempo)
-    {
 
+     string TimeToFormat(float tiempo)
+    {
         if(TiempoDePartidaReverso)
         {
             tiempo = (TiempoDeLaPartida + TiempoEsperaInicio)-tiempo;
-            float minutes = Mathf.Floor(tiempo / 60);
-            float seconds = tiempo%60;
-            // TiempoDePartidaTexto.SetText(""+Mathf.Ceil((TiempoDeLaPartida + TiempoEsperaInicio)-tiempo));
-            TiempoDePartidaTexto.SetText(string.Format("{0}:{1}", minutes, Mathf.Floor(seconds)));
         }
-        else
-        {
-            float minutes = Mathf.Floor(tiempo / 60);
-            float seconds = tiempo%60;
-            TiempoDePartidaTexto.SetText(""+Mathf.Ceil(tiempo));
-            TiempoDePartidaTexto.SetText(string.Format("{0}:{1}", minutes, Mathf.Floor(seconds)));
+        else{
+            tiempo = tiempo -TiempoEsperaInicio +.1f;
         }
+
+        float minutes = Mathf.Floor(tiempo / 60);
+        float seconds = tiempo%60;
+        return string.Format("{0}:{1}", minutes, Mathf.Floor(seconds));
+    }
+    private void SetInGameTime(float tiempo)
+    {
+        TiempoDePartidaTexto.SetText(TimeToFormat(tiempo));
+        // if(TiempoDePartidaReverso)
+        // {
+        //     // tiempo = (TiempoDeLaPartida + TiempoEsperaInicio)-tiempo;
+        //     // float minutes = Mathf.Floor(tiempo / 60);
+        //     // float seconds = tiempo%60;
+        //     // // TiempoDePartidaTexto.SetText(""+Mathf.Ceil((TiempoDeLaPartida + TiempoEsperaInicio)-tiempo));
+        //     // TiempoDePartidaTexto.SetText(string.Format("{0}:{1}", minutes, Mathf.Floor(seconds)));
+        //     TiempoDePartidaTexto.SetText(TimeToFormat(tiempo));
+        // }
+        // else
+        // {
+        //     float minutes = Mathf.Floor(tiempo / 60);
+        //     float seconds = tiempo%60;
+        //     // TiempoDePartidaTexto.SetText(""+Mathf.Ceil(tiempo));
+        //     TiempoDePartidaTexto.SetText(string.Format("{0}:{1}", minutes, Mathf.Floor(seconds)));
+        // }
         
     }
 
@@ -195,6 +217,18 @@ public class ClassicGameMode : MonoBehaviour
         Debug.Log("JUEGO TERMINADO");
         paused=!paused;
         MenuDeFin.SetActive(true);
+    }
+    IEnumerator AcelerarTiempo()
+    {
+        IsAccelerating = true;
+        Debug.Log("Acelerador: NEW CORROTIEN"+_Acelerador);
+        yield return new WaitForSeconds(4f);
+        if (_Acelerador >= TimeBeteenSpawn/1.2) _Acelerador = _Acelerador;
+        else{
+            _Acelerador+=Acelerador;
+        } 
+        
+        IsAccelerating = false;
     }
 
     // IEnumerator FinalizarPartidaPorTiempo(float tiempo)
@@ -237,7 +271,7 @@ public class ClassicGameMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-
+        
         // AL PAUSAR EL JUEGO
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -246,11 +280,14 @@ public class ClassicGameMode : MonoBehaviour
         }
 
         // GENERATE NEW TOPO
-        Timer -= Time.deltaTime;
-        if (Timer <= 0f)
+        _Timer -= Time.deltaTime;
+        // if (_Acelerador >= TimeBeteenSpawn) _Acelerador -= Acelerador; 
+        if (_Timer <= 0f)
         {
             Deal(DiglettBase, seleccionaAgujero(RandomPosition));
-            Timer = TimeBeteenSpawn;
+            _Timer = TimeBeteenSpawn - _Acelerador;
+            if (!IsAccelerating)StartCoroutine(AcelerarTiempo());
+            
         }
     }
 }
