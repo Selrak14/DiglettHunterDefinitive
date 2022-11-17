@@ -21,9 +21,9 @@ public class ClassicGameMode : MonoBehaviour
     int PuntuacionPartida = 0;
 
     //Digletts
+    public List<GameObject> DiglettList = new List<GameObject>();
     public bool RandomPosition;
     public List<Vector2> listOfPosition = new List<Vector2>();
-    public List<int> BussyPositions = new List<int>();
     public GameObject DiglettBase;
     public float TimeBeteenSpawn = .5f;
 
@@ -73,9 +73,6 @@ public class ClassicGameMode : MonoBehaviour
         TimerInstance.InicioCuentaAtras(TiempoEsperaInicio);
         StartInGameTime();
         MenuDePausa.SetActive(paused);
-        BussyPositions.Add(1);
-        // StartCoroutine(FinalizarPartidaPorTiempo(TiempoDeLaPartida+Timer));
-
 
     }
     
@@ -119,7 +116,13 @@ public class ClassicGameMode : MonoBehaviour
         // Modificar que el tiempo sea menro como avanza la partida 
         if(ModoContraReloj)
         {
-            TiempoDeLaPartida+=TiempoAnyadir;
+            if(TiempoAnyadir * TimeNormalizado/100f >=TiempoAnyadir)
+            {
+                TiempoDeLaPartida+=.01f;
+            }
+            else{
+                TiempoDeLaPartida+=TiempoAnyadir-(TiempoAnyadir * TimeNormalizado/100f);
+            }
         }
         
     }
@@ -173,6 +176,16 @@ public class ClassicGameMode : MonoBehaviour
 
 
     }
+    private GameObject DiglettSelectionProbabilityes()
+    {   
+        GameObject retunrer =  DiglettList[0];
+
+        if(Random.Range(0,100) > 80) retunrer = DiglettList[1];
+        if(Random.Range(0,100) > 95) retunrer = DiglettList[2];
+
+        return retunrer;
+    }
+
     private void Deal(GameObject prefab, Vector2 pos)
     {
         Debug.Log("New position for topo : " + pos);
@@ -186,6 +199,9 @@ public class ClassicGameMode : MonoBehaviour
             var TopoInstancia = Instantiate<GameObject>(prefab);
             TopoInstancia.transform.position = new Vector3(posX, posY, 0.0f);
             TopoInstancia.transform.parent = gameObject.transform;
+        }
+        else{
+
         }
 
     }
@@ -332,7 +348,7 @@ public class ClassicGameMode : MonoBehaviour
         // if (_Acelerador >= TimeBeteenSpawn) _Acelerador -= Acelerador; 
         if (_Timer <= 0f)
         {
-            Deal(DiglettBase, seleccionaAgujero(RandomPosition));
+            Deal(DiglettSelectionProbabilityes(), seleccionaAgujero(RandomPosition));
             _Timer = TimeBeteenSpawn - _Acelerador;
             if (!IsAccelerating)StartCoroutine(AcelerarTiempo());
             

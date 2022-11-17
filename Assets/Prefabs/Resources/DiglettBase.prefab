@@ -212,7 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiglettGolpeado: {fileID: 6211954675641336119}
   DiglettNormal: {fileID: 271801630758854038}
-  TimeAlive: 8
+  TimeAlive: 2
+  ContraRelojTiempoAnyadir: 2
 --- !u!61 &6263195214343651610
 BoxCollider2D:
   m_ObjectHideFlags: 0

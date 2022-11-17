@@ -12,7 +12,7 @@ public class DiglettBase : MonoBehaviour
     private float Timer;
     private float initializationTime;
     public float TimeAlive = 2f;
-    public float ContraRelojTiempoAnyadir;
+    public float ContraRelojTiempoAnyadir = 1f;
     int DiglettType; // PARA CUANDO TENGAMOS MAS DIGLETS
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class DiglettBase : MonoBehaviour
         DiglettGolpeado.enabled = false;
         GameInstance = FindObjectOfType<ClassicGameMode>();
         initializationTime = Time.timeSinceLevelLoad;
-        ContraRelojTiempoAnyadir = 1f;
+        // ContraRelojTiempoAnyadir = 1f;
         
     }
 

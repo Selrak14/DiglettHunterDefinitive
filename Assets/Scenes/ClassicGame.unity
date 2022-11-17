@@ -1792,10 +1792,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuDePausa: {fileID: 1816581178}
   MenuDeFin: {fileID: 995771832}
-  PuntuacionPartida: 0
   TextoPuntuacion: {fileID: 1680928459}
   TiempoDePartidaTexto: {fileID: 1604638731}
-  RandomPosition: 0
+  ModoContraReloj: 0
+  RandomPosition: 1
   listOfPosition:
   - {x: -4, y: 3}
   - {x: 3, y: -4}
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   TimeBeteenSpawn: 2
   TiempoEsperaInicio: 2.65
   _Timer: 0
-  TiempoDeLaPartida: 90
+  TiempoDeLaPartida: 45
   TiempoDePartidaReverso: 1
   Acelerador: 0.1
 --- !u!1 &2034780195

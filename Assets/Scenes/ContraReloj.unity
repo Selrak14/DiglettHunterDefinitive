@@ -1180,7 +1180,10 @@ MonoBehaviour:
   TextoPuntuacion: {fileID: 856955631}
   TiempoDePartidaTexto: {fileID: 493182105}
   ModoContraReloj: 1
-  "TiempoContraRelojA\xF1adido": 1
+  DiglettList:
+  - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+  - {fileID: 8551307676804739593, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
+  - {fileID: 8991745768265889118, guid: b8c565679c9e8ef4e93ba5e9c8b6540e, type: 3}
   RandomPosition: 0
   listOfPosition:
   - {x: -4, y: 3}
