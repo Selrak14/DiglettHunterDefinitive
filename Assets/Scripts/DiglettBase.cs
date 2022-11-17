@@ -12,6 +12,8 @@ public class DiglettBase : MonoBehaviour
     private float Timer;
     private float initializationTime;
     public float TimeAlive = 2f;
+    public float ContraRelojTiempoAnyadir;
+    int DiglettType; // PARA CUANDO TENGAMOS MAS DIGLETS
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class DiglettBase : MonoBehaviour
         DiglettGolpeado.enabled = false;
         GameInstance = FindObjectOfType<ClassicGameMode>();
         initializationTime = Time.timeSinceLevelLoad;
+        ContraRelojTiempoAnyadir = 1f;
         
     }
 
@@ -35,9 +38,6 @@ public class DiglettBase : MonoBehaviour
 
     IEnumerator DetroyOnTime()
     {
-        //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);
 
@@ -62,6 +62,7 @@ public class DiglettBase : MonoBehaviour
             DiglettNormal.enabled = false;
             // AÑADIR PUNTOS
             GameInstance.AddPuntuation();
+            GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
             Debug.Log("Box Clicked!");
         }
     }

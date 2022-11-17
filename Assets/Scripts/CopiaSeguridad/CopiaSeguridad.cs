@@ -6,20 +6,17 @@ using TMPro;
 using UnityEngine.UI;
 
 
-public class ClassicGameMode : MonoBehaviour
+// public class ClassicGameMode : MonoBehaviour
+public class CopiaSeguridad : MonoBehaviour
 {
     TheGame playerInstance;
     public GameObject MenuDePausa;
     public GameObject MenuDeFin;
+    public int PuntuacionPartida = 0;
     [SerializeField] private TextMeshProUGUI TextoPuntuacion;
     [SerializeField] private TextMeshProUGUI TiempoDePartidaTexto;
     Timer TimerInstance;
     private GameObject DebugObject;
-    public bool ModoContraReloj;
-
-    // Puntuaciones
-    int PuntuacionPartida = 0;
-    public float TiempoContraRelojAñadido = 1;
 
     //Digletts
     public bool RandomPosition;
@@ -110,17 +107,6 @@ public class ClassicGameMode : MonoBehaviour
         PuntuacionPartida++;
         TextoPuntuacion.SetText(PuntuacionPartida.ToString());
 
-    }
-
-    // MODO CONTRARRELOJ
-    public void ModoContrarelojTiempoAnyadido(float TiempoAnyadir)
-    {
-        // Modificar que el tiempo sea menro como avanza la partida 
-        if(ModoContraReloj)
-        {
-            TiempoDeLaPartida+=TiempoAnyadir;
-        }
-        
     }
 
     public void WhenGameEnds(string level)
@@ -264,8 +250,6 @@ public class ClassicGameMode : MonoBehaviour
     {
         TimeNormalizado = Time.time - TiempoRealDeInicioDelClassicGameMode;
         if(juegoHaTerminado)return;
-
-
         
         if(TimeNormalizado >= TiempoDeLaPartida+TiempoEsperaInicio)
         {
@@ -296,7 +280,6 @@ public class ClassicGameMode : MonoBehaviour
             Debug.Log("Escape key was pressed");
             JuegoPausado();
         }
-
 
         // GENERATE NEW TOPO
         _Timer -= Time.deltaTime;
