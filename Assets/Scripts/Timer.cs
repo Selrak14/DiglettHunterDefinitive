@@ -13,6 +13,11 @@ public class Timer : MonoBehaviour
 
     }
 
+    public void InicioCuentaAtras(float TiempoDeEspera)
+    {
+        TimerText.SetText(""+Mathf.Ceil(TiempoDeEspera));
+    }
+
     public void ModificarTexto(float timerValue, float TiempoDeEspera)
     {
         

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1634479794171045770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 271801630758854038, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 271801630758854038, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_Color.g
+      value: 0.73168635
+      objectReference: {fileID: 0}
+    - target: {fileID: 271801630758854038, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432424169677328578, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190487180704419948, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: TimeAlive
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190487180704419948, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: puntuacionDiglett
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190487180704419948, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: ContraRelojTiempoAnyadir
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
+      propertyPath: m_Name
+      value: DiglettDorado
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
