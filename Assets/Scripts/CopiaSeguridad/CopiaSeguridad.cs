@@ -6,22 +6,19 @@ using TMPro;
 using UnityEngine.UI;
 
 
-public class ClassicGameMode : MonoBehaviour
+// public class ClassicGameMode : MonoBehaviour
+public class CopiaSeguridad : MonoBehaviour
 {
     TheGame playerInstance;
     public GameObject MenuDePausa;
     public GameObject MenuDeFin;
+    public int PuntuacionPartida = 0;
     [SerializeField] private TextMeshProUGUI TextoPuntuacion;
     [SerializeField] private TextMeshProUGUI TiempoDePartidaTexto;
     Timer TimerInstance;
     private GameObject DebugObject;
-    public bool ModoContraReloj;
-
-    // Puntuaciones
-    int PuntuacionPartida = 0;
 
     //Digletts
-    public List<GameObject> DiglettList = new List<GameObject>();
     public bool RandomPosition;
     public List<Vector2> listOfPosition = new List<Vector2>();
     public GameObject DiglettBase;
@@ -73,6 +70,8 @@ public class ClassicGameMode : MonoBehaviour
         TimerInstance.InicioCuentaAtras(TiempoEsperaInicio);
         StartInGameTime();
         MenuDePausa.SetActive(paused);
+        // StartCoroutine(FinalizarPartidaPorTiempo(TiempoDeLaPartida+Timer));
+
 
     }
     
@@ -103,28 +102,11 @@ public class ClassicGameMode : MonoBehaviour
             // Debug.Log("VALOR ENVIADO A UI SHOW: "+value); ui.ShowPauseMenu(value);
         }
     }
-    public void AddPuntuation(int puntos)
+    public void AddPuntuation()
     {
-        PuntuacionPartida+=puntos;
+        PuntuacionPartida++;
         TextoPuntuacion.SetText(PuntuacionPartida.ToString());
 
-    }
-
-    // MODO CONTRARRELOJ
-    public void ModoContrarelojTiempoAnyadido(float TiempoAnyadir)
-    {
-        // Modificar que el tiempo sea menro como avanza la partida 
-        if(ModoContraReloj)
-        {
-            if(TiempoAnyadir * TimeNormalizado/100f >=TiempoAnyadir)
-            {
-                TiempoDeLaPartida+=.01f;
-            }
-            else{
-                TiempoDeLaPartida+=TiempoAnyadir-(TiempoAnyadir * TimeNormalizado/100f);
-            }
-        }
-        
     }
 
     public void WhenGameEnds(string level)
@@ -144,26 +126,10 @@ public class ClassicGameMode : MonoBehaviour
 
 
     // PONER DIGLETTS
-
-    private void EliminarPosiciones(Vector2 posicion)
-    {
-        listOfPosition.Remove(posicion);
-    }
-
-    public void  AnyadirPosicion(Vector2 posicion)
-    {
-        listOfPosition.Add(posicion);
-    }
-
     private Vector2 seleccionaAgujero(bool RandomPosition)
     {
         if(RandomPosition)
         {
-            if(listOfPosition.Count == 0)
-            {
-                Debug.Log("No hay espacio disponible");
-                return new Vector2(100,100);
-            }
             int seleccion = Random.Range (0, listOfPosition.Count);
             // Debug.Log(seleccion);
             // Debug.Log(listOfPosition[seleccion]);
@@ -176,34 +142,16 @@ public class ClassicGameMode : MonoBehaviour
 
 
     }
-    private GameObject DiglettSelectionProbabilityes()
-    {   
-        GameObject retunrer =  DiglettList[0];
-
-        if(Random.Range(0,100) > 80) retunrer = DiglettList[1];
-        if(Random.Range(0,100) > 95) retunrer = DiglettList[2];
-
-        return retunrer;
-    }
-
     private void Deal(GameObject prefab, Vector2 pos)
     {
         Debug.Log("New position for topo : " + pos);
-        if(pos != new Vector2(100,100))
-        {
-            EliminarPosiciones(pos);
-            // Vector2 pos = new Vector2(1,5);
-            float posX = pos[0];
-            float posY = pos[1];
-
-            var TopoInstancia = Instantiate<GameObject>(prefab);
-            TopoInstancia.transform.position = new Vector3(posX, posY, 0.0f);
-            TopoInstancia.transform.parent = gameObject.transform;
-        }
-        else{
-
-        }
-
+        // Vector2 pos = new Vector2(1,5);
+        float posX = pos[0];
+        float posY = pos[1];
+        var TopoInstancia = Instantiate<GameObject>(prefab);
+        // TopoInstancia.SetTopoPosition(id, images[id]);
+        TopoInstancia.transform.position = new Vector3(posX, posY, 0.0f);
+        TopoInstancia.transform.parent = gameObject.transform;
     }
 
     // UI
@@ -302,8 +250,6 @@ public class ClassicGameMode : MonoBehaviour
     {
         TimeNormalizado = Time.time - TiempoRealDeInicioDelClassicGameMode;
         if(juegoHaTerminado)return;
-
-
         
         if(TimeNormalizado >= TiempoDeLaPartida+TiempoEsperaInicio)
         {
@@ -324,16 +270,9 @@ public class ClassicGameMode : MonoBehaviour
     }
 
 
-
     // Update is called once per frame
     void Update()
     {   
-        // DEBUG 
-        if (Input.GetMouseButtonDown(2))
-        {
-            Debug.Log("Pressed middle click.");
-        }
-            
         
         // AL PAUSAR EL JUEGO
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -342,13 +281,12 @@ public class ClassicGameMode : MonoBehaviour
             JuegoPausado();
         }
 
-
         // GENERATE NEW TOPO
         _Timer -= Time.deltaTime;
         // if (_Acelerador >= TimeBeteenSpawn) _Acelerador -= Acelerador; 
         if (_Timer <= 0f)
         {
-            Deal(DiglettSelectionProbabilityes(), seleccionaAgujero(RandomPosition));
+            Deal(DiglettBase, seleccionaAgujero(RandomPosition));
             _Timer = TimeBeteenSpawn - _Acelerador;
             if (!IsAccelerating)StartCoroutine(AcelerarTiempo());
             
