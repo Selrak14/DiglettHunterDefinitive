@@ -7,6 +7,7 @@ TagManager:
   - music
   - MenuDePausa
   - Timer
+  - Map
   layers:
   - Default
   - TransparentFX

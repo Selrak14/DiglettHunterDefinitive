@@ -30,6 +30,8 @@ public class LoggIn : MonoBehaviour
             Debug.Log("REUTILIZAR THE GAME");
             playerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<TheGame>();
         }
+
+        Debug.Log(playerInstance.GetUserName());
 		
 	}
 

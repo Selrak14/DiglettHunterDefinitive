@@ -45,4 +45,18 @@ public class CameraMovement : MonoBehaviour
         Debug.Log("Levelslosed");
         animator.SetTrigger("closeLevels");
     }
+
+    public void ShowOptionsAnim()
+    {
+
+        Debug.Log("OptionsOpened");
+
+        animator.SetTrigger("showOptions");
+    }
+
+    public void CloseOptionsAnim()
+    {
+        Debug.Log("OptionsClosed");
+        animator.SetTrigger("closeOptions");
+    }
 }

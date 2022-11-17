@@ -5,22 +5,39 @@ using UnityEngine;
 
 public class TheGame : MonoBehaviour
 {
-
-
     public int toposDeLaPartida;
+    public string ActualUser;
+    
+    
     // [SerializeField] private int PartidasClasicasJugadas;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        
+        ActualUser = GetUserName();
+        if (ActualUser !="")
+        {
+            ActualUser = SetName(ActualUser);
+        }   
     }
 
-    public void SetName(string name)
+    public string GetUserName()
+    {
+        string username = PlayerPrefs.GetString("username");
+        return username;
+    }
+
+    public string SetName(string name)
     {
         Debug.Log("SET  NAME TO: "+name);
         PlayerPrefs.SetString("username", name); // 4
+        PlayerPrefs.Save(); // 5
+        return name;
+    }
+
+    public void GuardarNumeroDePartidas(int partidasJugadas)
+    {
+        PlayerPrefs.SetString(ActualUser+".partidas",""+partidasJugadas); // 4
         PlayerPrefs.Save(); // 5
     }
 

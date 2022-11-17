@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ClassicGame.unity
     guid: 5eb6ba456e8ee034889c74fc9f753803
+  - enabled: 1
+    path: Assets/Scenes/ContraReloj.unity
+    guid: 4f819cdf31170424cb289865d851c439
   m_configObjects: {}
