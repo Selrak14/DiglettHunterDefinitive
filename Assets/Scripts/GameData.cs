@@ -11,6 +11,7 @@ public class PlayerGameData
 
     // CONFIGURACION DEL USUARIO
     public string _MapaSkinCustom;
+    public string _PointerCustom = "Maza";
     
 
     // CONSTRCTOR

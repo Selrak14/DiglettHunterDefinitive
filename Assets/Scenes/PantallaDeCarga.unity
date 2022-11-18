@@ -904,13 +904,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874c94a91c1d4414e919dfa895f6e8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LastUser: 
+  AutoLogIn: 0
   gameData:
-    PartidasClasicas:
-    - jugador: Pascual
-      puntuacion: 200
-      tiempo: 30
+    _username: 
+    PartidasClasicas: []
     PartidasContraReloj: []
     PartidasBatalla: []
+    _MapaSkinCustom: 
 --- !u!1 &1743302171
 GameObject:
   m_ObjectHideFlags: 0

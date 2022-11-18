@@ -18,6 +18,9 @@ public class ClassicGameMode : MonoBehaviour
     public GameObject HabBomba;
     public bool ModoContraReloj;
    
+    // Fondos y esteticas    
+    string MapaString;
+    Image BackgroundSprite;
 
     // Puntuaciones
     int PuntuacionPartida = 0;
@@ -77,10 +80,19 @@ public class ClassicGameMode : MonoBehaviour
         StartInGameTime();
         MenuDePausa.SetActive(paused);
 
+        // COMPROBAR SETTINGS DE USUARIO
+        MapaString = playerInstance._GameData.gameData._MapaSkinCustom;
+        Debug.Log("MAPA SPRITE A CARGAR "+MapaString);
+        BackgroundSprite = GameObject.Find($"/UIgame/BackgroundEntero").GetComponent<Image>();
+        SetMapWithUserSettings();
     }
     
 
-
+    void SetMapWithUserSettings()
+    {
+        BackgroundSprite.sprite = Resources.Load<Sprite>($"MapsSkin/{MapaString}");
+        Debug.Log(BackgroundSprite);
+    }
 
     public IEnumerator WaitForRealSeconds( float delay )
     {
@@ -300,7 +312,7 @@ public class ClassicGameMode : MonoBehaviour
         IsAccelerating = true;
         Debug.Log("Acelerador: NEW CORROTIEN"+_Acelerador);
         yield return new WaitForSeconds(4f);
-        if (_Acelerador >= TimeBeteenSpawn/1.2) _Acelerador = _Acelerador;
+        if (_Acelerador >= TimeBeteenSpawn/1.2){_Acelerador = _Acelerador;}
         else{
             _Acelerador+=Acelerador;
         } 

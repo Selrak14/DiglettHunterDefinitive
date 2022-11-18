@@ -65,9 +65,9 @@ public class LoggIn : MonoBehaviour
 
     public void GetInputName()
     {
-        name.text;
-        playerInstance.readFile(name);
-
+        Debug.Log("Nombre Guardado");
+        playerInstance._GameData.readFile(name.text);
+        StartCoroutine(SubirNombre());
     }
 
     IEnumerator SubirNombre()

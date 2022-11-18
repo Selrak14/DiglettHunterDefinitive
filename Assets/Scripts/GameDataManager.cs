@@ -41,30 +41,32 @@ public class GameDataManager : MonoBehaviour
     public void readFile(string name)
     {
         string saveFile = Application.persistentDataPath + "/"+name+".json";
-        
+        Debug.Log("Path del archivo: "+saveFile);
         // Does the file exist?
         if (File.Exists(saveFile))
         {
+
             // Read the entire file and save its contents.
             string fileContents = File.ReadAllText(saveFile);
 
             // Deserialize the JSON data 
             //  into a pattern matching the GameData class.
             gameData = JsonUtility.FromJson<PlayerGameData>(fileContents);
-            Debug.Log("MOSTRAR CONTENIDO"+fileContents);
+            Debug.Log("Cargar JSON");
         }
         else{
             gameData = new PlayerGameData(); // EN CASO DE NO EXISTIR
             gameData._username = name;
+            Debug.Log("GUARDAR JSON");
         }
         // Guardar para futuras sesiones
         PlayerPrefs.SetString("LastUser",name);
-        writeFile(saveFile, gameData);
+        writeFile(name, gameData);
     }
 
 
 
-    public void writeFile(string _name, GameObject _gameData)
+    public void writeFile(string _name, PlayerGameData _gameData)
     {
         string _saveFile = Application.persistentDataPath + "/"+_name+".json";
         // Serialize the object into JSON and save string.

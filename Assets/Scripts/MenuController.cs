@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    // Debug variables
+    private GameObject DebugObject;
+    private TheGame playerInstance;
 
     public GameObject ShopMenu;
     public GameObject LevelsMenu;
@@ -15,6 +18,7 @@ public class MenuController : MonoBehaviour
     public GameObject ConfirmationPopup;
     public TextMeshProUGUI WelcomeText;
     public Sprite[] sprites;
+    CursorMode cursorMode;
 
     private int currentScene;
     CameraMovement camara;
@@ -104,7 +108,7 @@ public class MenuController : MonoBehaviour
     //Welcome Text
     public void WelcomePlayer()
     {
-        string username = PlayerPrefs.GetString("username");
+        string username = playerInstance._GameData.gameData._username;
         char firstLetter;
         if (username[0].Equals(" "))
             firstLetter = username[1];
@@ -204,9 +208,12 @@ public class MenuController : MonoBehaviour
     {
         string imagePointer = GameObject.Find($"/Customization/PointerSelectionWindow/Pointer{number}/Image").GetComponent<Image>().sprite.ToString().Split(' ')[0];
         Debug.Log(imagePointer);
-        //PlayerPrefs.SetString("pointer", imagePointer);
-
-        //Change Pointer
+        playerInstance._GameData.gameData._PointerCustom = imagePointer;
+        playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+        Texture2D cursorTexture = Resources.Load<Texture2D>($"Pointer/{imagePointer}");
+        cursorMode = CursorMode.Auto;
+        Vector2 hotSpot = Vector2.zero;
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
     }
 
@@ -222,8 +229,8 @@ public class MenuController : MonoBehaviour
         GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = sprites[Map];
 
         // Guardar Nombre en preferencias
-        string imageMap = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{number}").GetComponent<Image>().sprite.ToString().Split(' ')[0];
-        playerInstance.gameData._MapaSkinCustom = imageMap;
-        playerInstance.writeFile(playerInstance.gameData._username, gameData);
+        string imageMap = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map+1}").GetComponent<Image>().sprite.ToString().Split(' ')[0];
+        playerInstance._GameData.gameData._MapaSkinCustom = imageMap;
+        playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
     }
 }

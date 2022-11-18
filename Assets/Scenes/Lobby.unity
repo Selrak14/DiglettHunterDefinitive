@@ -776,7 +776,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c2c63c245b61684eb7f455fcf72fbce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb15e0388225c0b4da048e2d28056cc0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4468,7 +4468,7 @@ MonoBehaviour:
   LevelsMenu: {fileID: 1565168311}
   MapsMenu: {fileID: 1009686999}
   PointersMenu: {fileID: 1856234965}
-  ConfirmationPopup: {fileID: 0}
+  ConfirmationPopup: {fileID: 1386935652}
   WelcomeText: {fileID: 229517574}
   sprites:
   - {fileID: 21300000, guid: 3c2c63c245b61684eb7f455fcf72fbce, type: 3}
@@ -7413,7 +7413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a19c44fe6b3099048a14f8a945c0c079, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cde25da3ca5a87644891cab3357449c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7561,7 +7561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5cfc33871c53e5440bece792a0ec1780, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5b1f1f472c7b0140bc44d28c5881192, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
