@@ -9,6 +9,9 @@ public class DiglettBase : MonoBehaviour
     private ClassicGameMode GameInstance;
     public SpriteRenderer DiglettGolpeado;
     public SpriteRenderer DiglettNormal;
+    public Collision2D BombaCollision;
+    
+
     private float Timer;
     private float initializationTime;
     public float TimeAlive = 2f;
@@ -52,6 +55,15 @@ public class DiglettBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bomba")
+        {
+            Debug.Log("Te Mamaste");
+            // collision.gameObject.SendMessage("ApplyDamage", 10);
+        }
+    }
+
     public void OnMouseDown () 
     {
         // RAYCAST BLOCK
@@ -59,6 +71,7 @@ public class DiglettBase : MonoBehaviour
 
         if (Input.GetKey ("mouse 0")) 
         {
+
             VidasDelDiglett -=1;
             if(VidasDelDiglett == 0){
                 // EVITAR DOBLE CLICK

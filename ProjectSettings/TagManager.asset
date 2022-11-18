@@ -9,6 +9,7 @@ TagManager:
   - Timer
   - Map
   - Login
+  - Bomba
   layers:
   - Default
   - TransparentFX

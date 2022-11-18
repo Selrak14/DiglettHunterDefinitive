@@ -15,6 +15,7 @@ public class ClassicGameMode : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TiempoDePartidaTexto;
     Timer TimerInstance;
     private GameObject DebugObject;
+    public GameObject HabBomba;
     public bool ModoContraReloj;
 
     // Puntuaciones
@@ -189,6 +190,12 @@ public class ClassicGameMode : MonoBehaviour
         return retunrer;
     }
 
+    private void GenerarBomba()
+    {
+        var Inst = Instantiate<GameObject>(HabBomba);
+        Inst.transform.position = new Vector3(0f, 0f, 0.0f);
+        Inst.transform.parent = gameObject.transform;
+    }
     private void Deal(GameObject prefab, Vector2 pos)
     {
         Debug.Log("New position for topo : " + pos);
@@ -322,6 +329,7 @@ public class ClassicGameMode : MonoBehaviour
         // DEBUG 
         if (Input.GetMouseButtonDown(2))
         {
+            GenerarBomba();
             Debug.Log("Pressed middle click.");
         }
             
