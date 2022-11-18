@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
     public GameObject LevelsMenu;
     public GameObject MapsMenu;
     public GameObject PointersMenu;
+    public GameObject ConfirmationPopup;
     public TextMeshProUGUI WelcomeText;
     public Sprite[] sprites;
 
@@ -198,8 +199,10 @@ public class MenuController : MonoBehaviour
 
     public void ChangeMap(int Map)
     {
-        GameObject mapButton = GameObject.Find($"/Customization/MapSelection/Map{Map}/Sprite");
-        mapButton.SetActive(true);
+        //GameObject mapButton = GameObject.Find($"/Customization/MapSelection/Map{Map+1}/Sprite");
+        ConfirmationPopup.SetActive(true);
+        //
+        //
         Debug.Log("Map "+Map);
         GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = sprites[Map];
     }
