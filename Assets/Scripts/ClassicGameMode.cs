@@ -136,8 +136,10 @@ public class ClassicGameMode : MonoBehaviour
 
     public void WhenGameEndsByTime(string level)
     {
+        playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
         playerInstance.storeData(PuntuacionPartida);
         SceneManager.LoadScene(level);
+        
     }
     
 
@@ -155,9 +157,9 @@ public class ClassicGameMode : MonoBehaviour
         listOfPosition.Add(posicion);
     }
 
-    private Vector2 seleccionaAgujero(bool RandomPosition)
+    private Vector2 seleccionaAgujero(bool rp)
     {
-        if(RandomPosition)
+        if(rp)
         {
             if(listOfPosition.Count == 0)
             {
@@ -200,9 +202,7 @@ public class ClassicGameMode : MonoBehaviour
             TopoInstancia.transform.position = new Vector3(posX, posY, 0.0f);
             TopoInstancia.transform.parent = gameObject.transform;
         }
-        else{
 
-        }
 
     }
 
@@ -267,6 +267,7 @@ public class ClassicGameMode : MonoBehaviour
     }
     private void JuegoTerminado()
     {
+        playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
         juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
         paused=!paused;

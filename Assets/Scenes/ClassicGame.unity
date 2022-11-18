@@ -1747,6 +1747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopMenu: {fileID: 0}
   LevelsMenu: {fileID: 0}
+  sprites: []
 --- !u!1 &1945528084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,7 +1810,7 @@ MonoBehaviour:
   TimeBeteenSpawn: 2
   TiempoEsperaInicio: 3
   _Timer: 0
-  TiempoDeLaPartida: 30
+  TiempoDeLaPartida: 6
   TiempoDePartidaReverso: 1
   Acelerador: 0.1
 --- !u!1 &2034780195
