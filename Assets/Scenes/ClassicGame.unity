@@ -2494,6 +2494,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopMenu: {fileID: 0}
   LevelsMenu: {fileID: 0}
+  MapsMenu: {fileID: 0}
+  PointersMenu: {fileID: 0}
+  WelcomeText: {fileID: 0}
   sprites: []
 --- !u!1 &1945528084
 GameObject:
@@ -2542,6 +2545,7 @@ MonoBehaviour:
   MenuDeFin: {fileID: 995771832}
   TextoPuntuacion: {fileID: 1223386001}
   TiempoDePartidaTexto: {fileID: 1604638731}
+  HabBomba: {fileID: 1668379437029470046, guid: 19adea0bceb13a348be6a3b59efa7286, type: 3}
   ModoContraReloj: 0
   DiglettList:
   - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
