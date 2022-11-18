@@ -1180,7 +1180,7 @@ MonoBehaviour:
   MenuDeFin: {fileID: 780148685}
   TextoPuntuacion: {fileID: 856955631}
   TiempoDePartidaTexto: {fileID: 493182105}
-  HabBomba: {fileID: 8701492074673347719, guid: 74a2f64335642db45882ee196da223fd, type: 3}
+  HabBomba: {fileID: 1668379437029470046, guid: 19adea0bceb13a348be6a3b59efa7286, type: 3}
   ModoContraReloj: 1
   DiglettList:
   - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}

@@ -910,6 +910,7 @@ MonoBehaviour:
       puntuacion: 200
       tiempo: 30
     PartidasContraReloj: []
+    PartidasBatalla: []
 --- !u!1 &1743302171
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class ClassicGameMode : MonoBehaviour
     private GameObject DebugObject;
     public GameObject HabBomba;
     public bool ModoContraReloj;
+   
 
     // Puntuaciones
     int PuntuacionPartida = 0;
@@ -39,6 +40,7 @@ public class ClassicGameMode : MonoBehaviour
     public float Acelerador = 0;
     float _Acelerador;
     bool IsAccelerating;
+    float BombaMejoraEspera;
 
     
 
@@ -192,10 +194,23 @@ public class ClassicGameMode : MonoBehaviour
 
     private void GenerarBomba()
     {
+       for (int i = 0; i < 3; i++)
+       {
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f;
         var Inst = Instantiate<GameObject>(HabBomba);
-        Inst.transform.position = new Vector3(0f, 0f, 0.0f);
-        Inst.transform.parent = gameObject.transform;
+        Inst.transform.position = mouseWorldPosition;
+        }
     }
+
+    IEnumerator BombaMejoraEsperaSet()
+    {
+
+        yield return new WaitForSeconds(BombaMejoraEspera);
+
+    }
+
+
     private void Deal(GameObject prefab, Vector2 pos)
     {
         Debug.Log("New position for topo : " + pos);
@@ -332,6 +347,7 @@ public class ClassicGameMode : MonoBehaviour
             GenerarBomba();
             Debug.Log("Pressed middle click.");
         }
+        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             
         
         // AL PAUSAR EL JUEGO

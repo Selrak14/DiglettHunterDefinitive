@@ -55,15 +55,34 @@ public class DiglettBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // EXACTAMENTE LO MISMO CUANDO CLICAS AL BICHO
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Algo a colisionado!");
         if (collision.gameObject.tag == "Bomba")
         {
-            Debug.Log("Te Mamaste");
-            // collision.gameObject.SendMessage("ApplyDamage", 10);
+            VidasDelDiglett -=1;
+            if(VidasDelDiglett <= 0){
+                // EVITAR DOBLE CLICK
+                GetComponent<BoxCollider2D> ().enabled = false;
+                // CAMBIAR IMAGEN
+                DiglettGolpeado.enabled = true;
+                DiglettNormal.enabled = false;
+                // Esperar a desruir elemento
+                StartCoroutine(DetroyOnTime());
+                }
+            
+            
+
+
+            // AÑADIR PUNTOS
+            GameInstance.AddPuntuation(puntuacionDiglett);
+            GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
+            Debug.Log("Box Clicked!");
         }
     }
 
+    // CUANDO CLICAS AL BICHO
     public void OnMouseDown () 
     {
         // RAYCAST BLOCK
@@ -73,7 +92,7 @@ public class DiglettBase : MonoBehaviour
         {
 
             VidasDelDiglett -=1;
-            if(VidasDelDiglett == 0){
+            if(VidasDelDiglett <= 0){
                 // EVITAR DOBLE CLICK
                 GetComponent<BoxCollider2D> ().enabled = false;
                 // CAMBIAR IMAGEN
