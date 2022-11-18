@@ -780,6 +780,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopMenu: {fileID: 0}
   LevelsMenu: {fileID: 0}
+  MapsMenu: {fileID: 0}
+  PointersMenu: {fileID: 0}
+  WelcomeText: {fileID: 0}
   sprites: []
 --- !u!4 &664590590
 Transform:
@@ -2204,8 +2207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuDePausa: {fileID: 664590588}
   MenuDeFin: {fileID: 780148685}
-  TextoPuntuacion: {fileID: 856955631}
-  TiempoDePartidaTexto: {fileID: 493182105}
+  TextoPuntuacion: {fileID: 1583269439}
+  TiempoDePartidaTexto: {fileID: 436855620}
   HabBomba: {fileID: 1668379437029470046, guid: 19adea0bceb13a348be6a3b59efa7286, type: 3}
   ModoContraReloj: 1
   DiglettList:
