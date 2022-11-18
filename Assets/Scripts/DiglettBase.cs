@@ -64,7 +64,7 @@ public class DiglettBase : MonoBehaviour
         Debug.Log("Algo a colisionado!");
         if (collision.gameObject.tag == "Bomba")
         {
-            if(Bombainvulnerabilidad )
+            // if(Bombainvulnerabilidad )
             VidasDelDiglett -=1;
             if(VidasDelDiglett <= 0){
                 // EVITAR DOBLE CLICK
