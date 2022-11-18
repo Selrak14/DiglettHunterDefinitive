@@ -61,28 +61,31 @@ public class DiglettBase : MonoBehaviour
     // EXACTAMENTE LO MISMO CUANDO CLICAS AL BICHO
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Algo a colisionado!");
-        if (collision.gameObject.tag == "Bomba")
+        BombaLastTimeCheck -= Time.deltaTime;
+        if(BombaLastTimeCheck <= 0)
         {
-            // if(Bombainvulnerabilidad )
-            VidasDelDiglett -=1;
-            if(VidasDelDiglett <= 0){
-                // EVITAR DOBLE CLICK
-                GetComponent<BoxCollider2D> ().enabled = false;
-                // CAMBIAR IMAGEN
-                DiglettGolpeado.enabled = true;
-                DiglettNormal.enabled = false;
-                // Esperar a desruir elemento
-                StartCoroutine(DetroyOnTime());
-                }
-            
-            
+            Debug.Log("Algo a colisionado!");
+            if (collision.gameObject.tag == "Bomba")
+            {
+                VidasDelDiglett -=1;
+                if(VidasDelDiglett <= 0){
+                    // EVITAR DOBLE CLICK
+                    GetComponent<BoxCollider2D> ().enabled = false;
+                    // CAMBIAR IMAGEN
+                    DiglettGolpeado.enabled = true;
+                    DiglettNormal.enabled = false;
+                    // Esperar a desruir elemento
+                    StartCoroutine(DetroyOnTime());
+                    }
+                
+                
 
 
-            // AÑADIR PUNTOS
-            GameInstance.AddPuntuation(puntuacionDiglett);
-            GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
-            Debug.Log("Box Clicked!");
+                // AÑADIR PUNTOS
+                GameInstance.AddPuntuation(puntuacionDiglett);
+                GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
+                Debug.Log("Box Clicked!");
+            }
         }
     }
 
