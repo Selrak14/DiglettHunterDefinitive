@@ -12,6 +12,14 @@ public class CameraMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    // Get current animation being played
+    public string CurrentAnim()
+    {
+        string current_animation = this.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        return current_animation;
+    }
+
+    //Triggers Animations
     public void StartLevel()
     {
 
@@ -58,5 +66,19 @@ public class CameraMovement : MonoBehaviour
     {
         Debug.Log("OptionsClosed");
         animator.SetTrigger("closeOptions");
+    }
+
+    public void ShowCustomAnim()
+    {
+
+        Debug.Log("CustomOpened");
+
+        animator.SetTrigger("showCustom");
+    }
+
+    public void CloseCustomAnim()
+    {
+        Debug.Log("CustomClosed");
+        animator.SetTrigger("closeCustom");
     }
 }
