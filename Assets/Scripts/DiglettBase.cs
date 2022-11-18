@@ -19,11 +19,14 @@ public class DiglettBase : MonoBehaviour
     public float ContraRelojTiempoAnyadir = 1f;
     public int puntuacionDiglett = 1;
     public int VidasDelDiglett = 1;
+    float Bombainvulnerabilidad = .3f;
+    float BombaLastTimeCheck;
     int DiglettType; // PARA CUANDO TENGAMOS MAS DIGLETS
 
     // Start is called before the first frame update
     void Start()
     {
+        BombaLastTimeCheck = Bombainvulnerabilidad;
         DiglettGolpeado.enabled = false;
         GameInstance = FindObjectOfType<ClassicGameMode>();
         initializationTime = Time.timeSinceLevelLoad;
@@ -61,6 +64,7 @@ public class DiglettBase : MonoBehaviour
         Debug.Log("Algo a colisionado!");
         if (collision.gameObject.tag == "Bomba")
         {
+            if(Bombainvulnerabilidad )
             VidasDelDiglett -=1;
             if(VidasDelDiglett <= 0){
                 // EVITAR DOBLE CLICK
