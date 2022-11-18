@@ -15,7 +15,9 @@ public class ClassicGameMode : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TiempoDePartidaTexto;
     Timer TimerInstance;
     private GameObject DebugObject;
+    public GameObject HabBomba;
     public bool ModoContraReloj;
+   
 
     // Puntuaciones
     int PuntuacionPartida = 0;
@@ -38,6 +40,7 @@ public class ClassicGameMode : MonoBehaviour
     public float Acelerador = 0;
     float _Acelerador;
     bool IsAccelerating;
+    float BombaMejoraEspera;
 
     
 
@@ -136,8 +139,10 @@ public class ClassicGameMode : MonoBehaviour
 
     public void WhenGameEndsByTime(string level)
     {
+        playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
         playerInstance.storeData(PuntuacionPartida);
         SceneManager.LoadScene(level);
+        
     }
     
 
@@ -155,9 +160,9 @@ public class ClassicGameMode : MonoBehaviour
         listOfPosition.Add(posicion);
     }
 
-    private Vector2 seleccionaAgujero(bool RandomPosition)
+    private Vector2 seleccionaAgujero(bool rp)
     {
-        if(RandomPosition)
+        if(rp)
         {
             if(listOfPosition.Count == 0)
             {
@@ -182,9 +187,29 @@ public class ClassicGameMode : MonoBehaviour
 
         if(Random.Range(0,100) > 80) retunrer = DiglettList[1];
         if(Random.Range(0,100) > 95) retunrer = DiglettList[2];
+        if(Random.Range(0,100) > 95) retunrer = DiglettList[3];
 
         return retunrer;
     }
+
+    private void GenerarBomba()
+    {
+       for (int i = 0; i < 3; i++)
+       {
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f;
+        var Inst = Instantiate<GameObject>(HabBomba);
+        Inst.transform.position = mouseWorldPosition;
+        }
+    }
+
+    IEnumerator BombaMejoraEsperaSet()
+    {
+
+        yield return new WaitForSeconds(BombaMejoraEspera);
+
+    }
+
 
     private void Deal(GameObject prefab, Vector2 pos)
     {
@@ -200,9 +225,7 @@ public class ClassicGameMode : MonoBehaviour
             TopoInstancia.transform.position = new Vector3(posX, posY, 0.0f);
             TopoInstancia.transform.parent = gameObject.transform;
         }
-        else{
 
-        }
 
     }
 
@@ -267,6 +290,7 @@ public class ClassicGameMode : MonoBehaviour
     }
     private void JuegoTerminado()
     {
+        playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
         juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
         paused=!paused;
@@ -285,18 +309,7 @@ public class ClassicGameMode : MonoBehaviour
         IsAccelerating = false;
     }
 
-    // IEnumerator FinalizarPartidaPorTiempo(float tiempo)
-    // {
-    //     //Print the time of when the function is first called.
-    //     Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
-    //     //yield on a new YieldInstruction that waits for 5 seconds.
-    //     yield return new WaitForSeconds(tiempo);
-
-    //     //After we have waited 5 seconds print the time again.
-    //     Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-    //     JuegoTerminado();
-    // }
 
     void OnGUI()
     {
@@ -331,8 +344,10 @@ public class ClassicGameMode : MonoBehaviour
         // DEBUG 
         if (Input.GetMouseButtonDown(2))
         {
+            GenerarBomba();
             Debug.Log("Pressed middle click.");
         }
+        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             
         
         // AL PAUSAR EL JUEGO

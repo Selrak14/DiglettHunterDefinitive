@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 432424169677328578}
   - component: {fileID: 6190487180704419948}
   - component: {fileID: 6263195214343651610}
+  - component: {fileID: 9092584835736329279}
   m_Layer: 0
   m_Name: DiglettBase
   m_TagString: Untagged
@@ -213,8 +214,10 @@ MonoBehaviour:
   DiglettGolpeado: {fileID: 6211954675641336119}
   DiglettNormal: {fileID: 271801630758854038}
   TimeAlive: 2
+  TimeAliveAfterDeath: 1
   ContraRelojTiempoAnyadir: 2
   puntuacionDiglett: 1
+  VidasDelDiglett: 1
 --- !u!61 &6263195214343651610
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -241,3 +244,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.12, y: 5}
   m_EdgeRadius: 0
+--- !u!50 &9092584835736329279
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6918249967917864323}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

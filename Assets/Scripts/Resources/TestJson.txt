@@ -1,0 +1,14 @@
+{
+    "player": [
+        {
+        "name": "Caca",
+        "health" : 1,
+        },
+        
+        {
+        "name": "Caca",
+        "health" : 1,
+        },
+    ]
+    
+}

@@ -2204,12 +2204,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuDePausa: {fileID: 664590588}
   MenuDeFin: {fileID: 780148685}
-  TextoPuntuacion: {fileID: 1583269439}
-  TiempoDePartidaTexto: {fileID: 436855620}
+  TextoPuntuacion: {fileID: 856955631}
+  TiempoDePartidaTexto: {fileID: 493182105}
+  HabBomba: {fileID: 1668379437029470046, guid: 19adea0bceb13a348be6a3b59efa7286, type: 3}
   ModoContraReloj: 1
   DiglettList:
   - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
   - {fileID: 8551307676804739593, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
+  - {fileID: 3039649592022858599, guid: 2892f7bc597db7b4eb84ebd0978dacc4, type: 3}
   - {fileID: 8991745768265889118, guid: b8c565679c9e8ef4e93ba5e9c8b6540e, type: 3}
   RandomPosition: 1
   listOfPosition:
