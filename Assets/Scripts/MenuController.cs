@@ -192,9 +192,6 @@ public class MenuController : MonoBehaviour
 
         //Change Pointer
 
-
-
-
     }
 
     // Map Changer

@@ -62,19 +62,12 @@ public class LoggIn : MonoBehaviour
         }
 	}
 
-    // Update is called once per frame
-    void Update()
+
+    public void GetInputName()
     {
-        
-    }
+        name.text;
+        playerInstance.readFile(name);
 
-    public void SaveUserName(){
-            string username = name.text;
-            playerInstance.SetName(username);
-            if(loginToggle.isOn) PlayerPrefs.SetString(username+".AutomaticLogIn",""+1);
-            playerInstance.SetLastName(username);
-
-            StartCoroutine(SubirNombre());
     }
 
     IEnumerator SubirNombre()
@@ -82,9 +75,7 @@ public class LoggIn : MonoBehaviour
         // WAIT
         Subida.SetTrigger("Levantar");
         yield return new WaitForSeconds(1f);
-        // Subida.SetTrigger("Levantar");
         LevelLoad();
-
     }
 
     public void LevelLoad()

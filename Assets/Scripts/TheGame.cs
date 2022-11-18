@@ -29,21 +29,18 @@ public class TheGame : MonoBehaviour
         return username;
     }
 
-    public void NewPlayer()
-    {
 
-    }
     public void OnLoggInAutomatico()
     {
         SetName(LastUser);
     }
 
-    public void SetUserVariable(string Key, string value)
-    {
-        string name = GetUserName();
-        PlayerPrefs.SetString(name+"."+Key, value); // 4
+    // public void SetUserVariable(string Key, string value)
+    // {
+    //     string name = GetUserName();
+    //     PlayerPrefs.SetString(name+"."+Key, value); // 4
 
-    }
+    // }
 
     public string GetUserVariable(string key)
     {
@@ -66,31 +63,19 @@ public class TheGame : MonoBehaviour
         PlayerPrefs.Save(); 
     }
 
-    public void GuardarNumeroDePartidas(int partidasJugadas)
-    {
-        PlayerPrefs.SetString(ActualUser+".partidas",""+partidasJugadas); // 4
-        PlayerPrefs.Save(); // 5
-    }
-
-    public void storeData(int value)
-    {
-        toposDeLaPartida = value;
-    }
 
 
-    public void GuardarPartidaJSON(string j, int p, int t, bool modo1)
-    {
-            // string jugador;
-            // int puntuacion;
-            // int tiempo;
-            Debug.Log("GuardarPartidaAJson");
-            if(modo1)_GameData.gameData.PartidasContraReloj.Add(new Partidas(j, p, t));
-            if(!modo1)_GameData.gameData.PartidasClasicas.Add(new Partidas(j, p, t));
-            Debug.Log("QUE SE GUARDA?"+_GameData.gameData.PartidasClasicas[1].jugador);
-            _GameData.writeFile();
-            _GameData.MostrarTextoDebug();
-            _GameData.MostrarVariable();
-    }
+    // public void GuardarPartidaJSON(string j, int p, int t, bool modo1)
+    // {
+    //         // string jugador;
+    //         // int puntuacion;
+    //         // int tiempo;
+    //         Debug.Log("GuardarPartidaAJson");
+    //         if(modo1)_GameData.gameData.PartidasContraReloj.Add(new Partidas(j, p, t));
+    //         if(!modo1)_GameData.gameData.PartidasClasicas.Add(new Partidas(j, p, t));
+    //         Debug.Log("QUE SE GUARDA?"+_GameData.gameData.PartidasClasicas[1].jugador);
+    //         _GameData.writeFile();
+    // }
 
     // Update is called once per frame
     void Update()
@@ -99,16 +84,32 @@ public class TheGame : MonoBehaviour
             Debug.Log("Pressed primary button.");
 
         if (Input.GetMouseButtonDown(1)){
-
-        
             Debug.Log("Pressed secondary button.");
             SceneManager.LoadScene("LeaderBoard");
         }
         
         if (Input.GetMouseButtonDown(2))
             Debug.Log("Pressed middle click.");
+
+
+        // if (Input.GetKeyDown("j")){
+        //     _GameData.DANGERDELETEFILE();
+        //     Debug.Log("JJJJ");
+        //     }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
     // public string usuario;
     // private string usuarioKey = "usuario";
 

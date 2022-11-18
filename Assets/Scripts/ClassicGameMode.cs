@@ -133,14 +133,13 @@ public class ClassicGameMode : MonoBehaviour
     public void WhenGameEnds(string level)
     {
         Time.timeScale = 1f;
-        playerInstance.storeData(PuntuacionPartida);
         SceneManager.LoadScene(level);
     }
 
     public void WhenGameEndsByTime(string level)
     {
-        playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
-        playerInstance.storeData(PuntuacionPartida);
+        // playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
+        // playerInstance.storeData(PuntuacionPartida);
         SceneManager.LoadScene(level);
         
     }
@@ -290,7 +289,7 @@ public class ClassicGameMode : MonoBehaviour
     }
     private void JuegoTerminado()
     {
-        playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
+        // playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
         juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
         paused=!paused;

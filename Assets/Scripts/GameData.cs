@@ -2,13 +2,18 @@
  using System.Collections.Generic;
 
 [System.Serializable]
-public class GameData
+public class PlayerGameData
 {
-    
+    public string _username;
     public List<Partidas> PartidasClasicas;
     public List<Partidas> PartidasContraReloj;
     public List<Partidas> PartidasBatalla;
+
+    // CONFIGURACION DEL USUARIO
+    public string _MapaSkinCustom;
     
+
+    // CONSTRCTOR
 }
 
 [System.Serializable]
@@ -28,3 +33,6 @@ public class Partidas
     }
 
 }
+
+//  Name1 [...]
+//  Name2 [...]
