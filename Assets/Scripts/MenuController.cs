@@ -22,6 +22,21 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        // COMPROBAR QUE ESTAS JUGANDO DE VERDAD I NO DESDE EL EDITOR
+        if(GameObject.FindGameObjectsWithTag("GameController").Length == 0)
+        {
+            Debug.Log("NO HAY THE GAME");
+            // someObject doesn't exist
+            DebugObject = new GameObject("TheGameGeneradoPorCodigo");
+            DebugObject.AddComponent<TheGame>();
+            playerInstance = DebugObject.GetComponent<TheGame>();  
+        }
+        else
+        {
+            Debug.Log("REUTILIZAR THE GAME");
+            playerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<TheGame>();
+        }
+        // // //
 
         currentScene = SceneManager.GetActiveScene().buildIndex;
         //Debug.Log(currentScene);
@@ -187,7 +202,7 @@ public class MenuController : MonoBehaviour
     //Pointers
     public void ChangePointer(int number)
     {
-        string imagePointer = GameObject.Find($"/Customization/PointerSelection/Pointer{number}/Image").GetComponent<Image>().sprite.ToString().Split(' ')[0];
+        string imagePointer = GameObject.Find($"/Customization/PointerSelectionWindow/Pointer{number}/Image").GetComponent<Image>().sprite.ToString().Split(' ')[0];
         Debug.Log(imagePointer);
         //PlayerPrefs.SetString("pointer", imagePointer);
 
@@ -205,5 +220,10 @@ public class MenuController : MonoBehaviour
         //
         Debug.Log("Map "+Map);
         GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = sprites[Map];
+
+        // Guardar Nombre en preferencias
+        string imageMap = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{number}").GetComponent<Image>().sprite.ToString().Split(' ')[0];
+        playerInstance.gameData._MapaSkinCustom = imageMap;
+        playerInstance.writeFile(playerInstance.gameData._username, gameData);
     }
 }

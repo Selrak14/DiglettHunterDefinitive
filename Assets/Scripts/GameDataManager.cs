@@ -15,7 +15,7 @@ public class GameDataManager : MonoBehaviour
     public int AutoLogIn = 0;
 
     // Create a GameData field.
-    public PlayerGameData gameData = new PlayerGameData();
+    public PlayerGameData gameData; // = new PlayerGameData();
 
     void Awake()
     {
@@ -29,7 +29,7 @@ public class GameDataManager : MonoBehaviour
         AutoLogIn = PlayerPrefs.GetInt("AutoLogIn",0);
         if(LastUser != "" & AutoLogIn == 1) {
             saveFile = Application.persistentDataPath + "/"+LastUser+".json";
-            readFile(LastUser);
+            readFile(LastUser); // SE CREA SI O SI UN GAME OBJECT I UN JSON
         }
     }
 
@@ -54,17 +54,19 @@ public class GameDataManager : MonoBehaviour
             Debug.Log("MOSTRAR CONTENIDO"+fileContents);
         }
         else{
-            gameData = new PlayerGameData();
+            gameData = new PlayerGameData(); // EN CASO DE NO EXISTIR
             gameData._username = name;
         }
+        // Guardar para futuras sesiones
         PlayerPrefs.SetString("LastUser",name);
         writeFile(saveFile, gameData);
     }
 
 
 
-    public void writeFile(string _saveFile, GameObject _gameData)
+    public void writeFile(string _name, GameObject _gameData)
     {
+        string _saveFile = Application.persistentDataPath + "/"+_name+".json";
         // Serialize the object into JSON and save string.
         string jsonString = JsonUtility.ToJson(_gameData);
 
