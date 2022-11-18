@@ -22,7 +22,7 @@ public class DiglettBase : MonoBehaviour
     float Bombainvulnerabilidad = .3f;
     float BombaLastTimeCheck;
     int DiglettType; // PARA CUANDO TENGAMOS MAS DIGLETS
-
+    
     // Start is called before the first frame update
     void Start()
     {
