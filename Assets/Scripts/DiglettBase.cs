@@ -26,7 +26,7 @@ public class DiglettBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BombaLastTimeCheck = Bombainvulnerabilidad;
+        BombaLastTimeCheck = 0f;
         DiglettGolpeado.enabled = false;
         GameInstance = FindObjectOfType<ClassicGameMode>();
         initializationTime = Time.timeSinceLevelLoad;
@@ -64,7 +64,8 @@ public class DiglettBase : MonoBehaviour
         BombaLastTimeCheck -= Time.deltaTime;
         if(BombaLastTimeCheck <= 0)
         {
-            Debug.Log("Algo a colisionado!");
+            BombaLastTimeCheck = Bombainvulnerabilidad;
+            Debug.Log("Algo a colisionado!  "+ BombaLastTimeCheck);
             if (collision.gameObject.tag == "Bomba")
             {
                 VidasDelDiglett -=1;
