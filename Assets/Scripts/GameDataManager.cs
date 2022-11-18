@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 
 public class GameDataManager : MonoBehaviour
@@ -64,20 +65,38 @@ public class GameDataManager : MonoBehaviour
         File.WriteAllText(saveFile, jsonString);
     }
 
-    public void LeaderBoardShow(GameObject rowPrefab, Transform rowsParent)
+    public void LeaderBoardShow(GameObject rowPrefab, List<Transform> rowsParent)
     {
         Debug.Log("leaderboard");
         string fileContents = File.ReadAllText(saveFile);
         gameData = JsonUtility.FromJson<GameData>(fileContents);
 
-        foreach (var item in gameData.PartidasClasicas)
+        // TODAS LAS LISTAS 
+        List<Partidas> SortedListClassic = gameData.PartidasClasicas.OrderByDescending(o=>o.puntuacion).ToList();
+        List<Partidas> SortedListReloj = gameData.PartidasContraReloj.OrderByDescending(o=>o.puntuacion).ToList();
+        List<Partidas> SortedListBatalla = gameData.PartidasBatalla.OrderByDescending(o=>o.puntuacion).ToList();
+
+        foreach (var item in SortedListClassic)
         {
-            GameObject newGo = Instantiate(rowPrefab,rowsParent);
+            GameObject newGo = Instantiate(rowPrefab,rowsParent[0]);
             Text[] texts = newGo.GetComponentsInChildren<Text>();
             texts[0].text = item.jugador;
             texts[1].text = item.puntuacion.ToString();
         }
-
+        foreach (var item in SortedListReloj)
+        {
+            GameObject newGo = Instantiate(rowPrefab,rowsParent[1]);
+            Text[] texts = newGo.GetComponentsInChildren<Text>();
+            texts[0].text = item.jugador;
+            texts[1].text = item.puntuacion.ToString();
+        }
+        foreach (var item in SortedListBatalla)
+        {
+            GameObject newGo = Instantiate(rowPrefab,rowsParent[2]);
+            Text[] texts = newGo.GetComponentsInChildren<Text>();
+            texts[0].text = item.jugador;
+            texts[1].text = item.puntuacion.ToString();
+        }
 
 
 

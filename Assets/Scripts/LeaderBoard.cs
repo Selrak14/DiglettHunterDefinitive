@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class LeaderBoard : MonoBehaviour
 {
+    
     public GameObject rowPrefab;
-    public Transform rowsParent;
+    // public Transform rowsParent;
+
+
+    // public List<GameObject> rowPrefab = new List<GameObject>();
+    public List<Transform> rowsParent = new List<Transform>();
+    public List<GameObject> _Tablas = new List<GameObject>();
+    // public Transform rowsParent;
+
     GameDataManager playerInstance;
+    // public GameObject tablaClassic;
     
     // Start is called before the first frame update
     void Start()
@@ -25,21 +35,22 @@ public class LeaderBoard : MonoBehaviour
 
     void OnLoadLeaderboard()
     {
-        // foreach (var item in NoSe)
-        // {
-        //     GameObject newGo = Instantiate(rowPrefab,rowsParent);
-        //     Text[] texts = newGo.GetComponentsInChildren<Text>();
-        //     texts[0].text = item.Position.ToString();
-        //     texts[1].text;
-        // }
 
+    }
 
-        for(int i = 0; i < 5; i++)
-        {
-            GameObject newGo = Instantiate(rowPrefab,rowsParent);
-            Text[] texts = newGo.GetComponentsInChildren<Text>();
-            texts[0].text = "item.Position.ToString();";
-            texts[1].text = "CArA";
-        }
+    void HideAll(){
+        _Tablas[0].SetActive(false);
+        _Tablas[1].SetActive(false);
+        _Tablas[2].SetActive(false);
+    }
+
+    public void SetLeaderboardVisibility(string leaderboardName)
+    {
+        HideAll();
+        Debug.Log("MOSTRAR TABLA");
+        if(leaderboardName == "Classic")_Tablas[0].SetActive(true);
+        if(leaderboardName == "Reloj")_Tablas[1].SetActive(true);
+        if(leaderboardName == "Batalla")_Tablas[2].SetActive(true);
+        
     }
 }

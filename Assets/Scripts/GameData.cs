@@ -7,6 +7,7 @@ public class GameData
     
     public List<Partidas> PartidasClasicas;
     public List<Partidas> PartidasContraReloj;
+    public List<Partidas> PartidasBatalla;
     
 }
 
