@@ -214,6 +214,7 @@ MonoBehaviour:
   DiglettNormal: {fileID: 271801630758854038}
   TimeAlive: 2
   ContraRelojTiempoAnyadir: 2
+  puntuacionDiglett: 1
 --- !u!61 &6263195214343651610
 BoxCollider2D:
   m_ObjectHideFlags: 0

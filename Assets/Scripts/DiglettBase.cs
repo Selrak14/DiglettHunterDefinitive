@@ -15,7 +15,7 @@ public class DiglettBase : MonoBehaviour
     public float ContraRelojTiempoAnyadir = 1f;
     public int puntuacionDiglett = 1;
     int DiglettType; // PARA CUANDO TENGAMOS MAS DIGLETS
-
+    
     // Start is called before the first frame update
     void Start()
     {
