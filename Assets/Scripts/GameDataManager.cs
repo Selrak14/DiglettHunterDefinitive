@@ -76,6 +76,11 @@ public class GameDataManager : MonoBehaviour
         File.WriteAllText(_saveFile, jsonString);
     }
 
+    public void GuardarClassicGame(string GameType, string _jugador, int _puntuacion, int _tiempo, int _dinero)
+    {
+        
+    }
+
     public void LeaderBoardShow(GameObject rowPrefab, List<Transform> rowsParent)
     {
         Debug.Log("leaderboard");

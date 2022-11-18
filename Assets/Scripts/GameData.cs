@@ -23,13 +23,15 @@ public class Partidas
     public string jugador;
     public int puntuacion;
     public int tiempo;
+    public int dinero;
     
 
-    public Partidas(string _jugador, int _puntuacion, int _tiempo)
+    public Partidas(string _jugador, int _puntuacion, int _tiempo, int _dinero)
     {
         this.jugador = _jugador;
         this.puntuacion = _puntuacion;
         this.tiempo = _tiempo;
+        this.dinero = _dinero;
         
     }
 
