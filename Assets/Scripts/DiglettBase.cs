@@ -12,8 +12,10 @@ public class DiglettBase : MonoBehaviour
     private float Timer;
     private float initializationTime;
     public float TimeAlive = 2f;
+    public float TimeAliveAfterDeath = 1f;
     public float ContraRelojTiempoAnyadir = 1f;
     public int puntuacionDiglett = 1;
+    public int VidasDelDiglett = 1;
     int DiglettType; // PARA CUANDO TENGAMOS MAS DIGLETS
 
     // Start is called before the first frame update
@@ -42,7 +44,7 @@ public class DiglettBase : MonoBehaviour
     IEnumerator DetroyOnTime()
     {
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(TimeAliveAfterDeath);
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
@@ -57,17 +59,25 @@ public class DiglettBase : MonoBehaviour
 
         if (Input.GetKey ("mouse 0")) 
         {
-            // EVITAR DOBLE CLICK
-            GetComponent<BoxCollider2D> ().enabled = false;
-            // Esperar a desruir elemento
-            StartCoroutine(DetroyOnTime());
-            // CAMBIAR IMAGEN
-            DiglettGolpeado.enabled = true;
-            DiglettNormal.enabled = false;
+            VidasDelDiglett -=1;
+            if(VidasDelDiglett == 0){
+                // EVITAR DOBLE CLICK
+                GetComponent<BoxCollider2D> ().enabled = false;
+                // CAMBIAR IMAGEN
+                DiglettGolpeado.enabled = true;
+                DiglettNormal.enabled = false;
+                // Esperar a desruir elemento
+                StartCoroutine(DetroyOnTime());
+                }
+            
+            
+
+
             // AÑADIR PUNTOS
             GameInstance.AddPuntuation(puntuacionDiglett);
             GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
             Debug.Log("Box Clicked!");
+            
         }
     }
 }

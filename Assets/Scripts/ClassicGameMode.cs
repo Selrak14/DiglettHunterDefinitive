@@ -184,6 +184,7 @@ public class ClassicGameMode : MonoBehaviour
 
         if(Random.Range(0,100) > 80) retunrer = DiglettList[1];
         if(Random.Range(0,100) > 95) retunrer = DiglettList[2];
+        if(Random.Range(0,100) > 95) retunrer = DiglettList[3];
 
         return retunrer;
     }
