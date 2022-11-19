@@ -71,7 +71,7 @@ public class TheGame : MonoBehaviour
 
     public void LogOut()
     {
-        PlayerPrefs.SetInt("AutoLogIn");
+        PlayerPrefs.SetInt("AutoLogIn",0);
     }
 }
 
