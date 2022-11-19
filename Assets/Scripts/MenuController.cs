@@ -217,6 +217,22 @@ public class MenuController : MonoBehaviour
     //Pointers
     public void ChangePointer(int number)
     {
+        bool isLocked = true;
+        TextMeshProUGUI Content = GameObject.Find($"/Customization/PointerSelectionWindow/Warning/Content").GetComponent<TextMeshProUGUI>();
+
+        if (number == 3 && isLocked)
+        {
+            Content.SetText("Buy it at the store");
+            StartCoroutine(PopUpClick(GameObject.Find($"/Customization/PointerSelectionWindow/Warning")));
+        }
+        else if (number == 2)
+        {
+            Content.SetText("Available in the next update!!");
+            StartCoroutine(PopUpClick(GameObject.Find($"/Customization/PointerSelectionWindow/Warning")));
+        }
+        else {
+
+        //Save pointer
         string imagePointer = GameObject.Find($"/Customization/PointerSelectionWindow/Buttons/Pointer{number}/Image").GetComponent<Image>().sprite.ToString().Split(' ')[0];
         Debug.Log(imagePointer);
         playerInstance._GameData.gameData._PointerCustom = imagePointer;
@@ -225,24 +241,22 @@ public class MenuController : MonoBehaviour
         cursorMode = CursorMode.Auto;
         Vector2 hotSpot = Vector2.zero;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-
+        }
     }
 
     // Map Changer
 
 
-
-
-    IEnumerator PopUpClick()
+    IEnumerator PopUpClick(GameObject PopUp)
     {
-        ConfirmationPopup.SetActive(true);
+        PopUp.SetActive(true);
         yield return new WaitForSeconds(1);
-        ConfirmationPopup.SetActive(false);
+        PopUp.SetActive(false);
     }
     public void ChangeMap(int Map)
     {
         //GameObject mapButton = GameObject.Find($"/Customization/MapSelection/Map{Map+1}/Sprite");
-        StartCoroutine(PopUpClick());
+        StartCoroutine(PopUpClick(ConfirmationPopup));
 
         Debug.Log("Map "+Map);
         Sprite imageSelection = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map + 1}").GetComponent<Image>().sprite;
