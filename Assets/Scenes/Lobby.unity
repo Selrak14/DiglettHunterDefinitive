@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76deb15b4492546409e707f210e76412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuController: {fileID: 0}
+  MenuController: {fileID: 1094317186}
   Map: 1
 --- !u!1 &194348422
 GameObject:
@@ -3688,7 +3688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LIGHTSABER
+  m_text: Torreta Nv.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6035,7 +6035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CLASSIC
+  m_text: Torreta Nv.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10635,7 +10635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DIRT MAP
+  m_text: Torreta Nv.3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10977,7 +10977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76deb15b4492546409e707f210e76412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuController: {fileID: 0}
+  MenuController: {fileID: 1094317186}
   Map: 4
 --- !u!1 &1687883860
 GameObject:
@@ -11204,7 +11204,7 @@ GameObject:
   - component: {fileID: 1732591154}
   - component: {fileID: 1732591153}
   m_Layer: 5
-  m_Name: Pointer1
+  m_Name: Torreta1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11482,7 +11482,7 @@ GameObject:
   - component: {fileID: 1790820944}
   - component: {fileID: 1790820943}
   m_Layer: 5
-  m_Name: Map3
+  m_Name: Torreta3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13369,7 +13369,7 @@ GameObject:
   - component: {fileID: 2095909915}
   - component: {fileID: 2095909914}
   m_Layer: 5
-  m_Name: Pointer2
+  m_Name: Torreta2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13685,7 +13685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76deb15b4492546409e707f210e76412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuController: {fileID: 0}
+  MenuController: {fileID: 1094317186}
   Map: 2
 --- !u!1 &2116282544
 GameObject:
@@ -13832,7 +13832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76deb15b4492546409e707f210e76412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuController: {fileID: 0}
+  MenuController: {fileID: 1094317186}
   Map: 3
 --- !u!1 &2117866107
 GameObject:
