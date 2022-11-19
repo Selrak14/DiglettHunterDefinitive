@@ -16,6 +16,7 @@ public class MenuController : MonoBehaviour
     public GameObject MapsMenu;
     public GameObject PointersMenu;
     public GameObject ConfirmationPopup;
+    public GameObject Extramoney;
     public TextMeshProUGUI WelcomeText;
     public Sprite[] sprites;
     CursorMode cursorMode;
@@ -188,6 +189,13 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("Options Closed");
         camara.CloseOptionsAnim();
+    }
+
+    //Shop
+    // + Button
+    public void ExtraMoney()
+    {
+        StartCoroutine(PopUpClick(Extramoney));
     }
 
     //Customization Buttons
