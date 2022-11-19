@@ -108,13 +108,15 @@ public class GameDataManager : MonoBehaviour
             Text[] texts = newGo.GetComponentsInChildren<Text>();
             texts[0].text = item.jugador;
             texts[1].text = item.puntuacion.ToString();
+            texts[2].text = item.tiempo.ToString();
         }
         foreach (var item in SortedListBatalla)
         {
             GameObject newGo = Instantiate(rowPrefab,rowsParent[2]);
             Text[] texts = newGo.GetComponentsInChildren<Text>();
             texts[0].text = item.jugador;
-            texts[1].text = item.puntuacion.ToString();
+            texts[1].text = item.dinero.ToString();
+            texts[2].text = item.tiempo.ToString();
         }
 
 

@@ -27,7 +27,7 @@ public class ClassicGameMode : MonoBehaviour
 
     // Puntuaciones
     int PuntuacionPartida = 0;
-    float Money = 0;
+    float Money = 0f;
     public int Vida = 20;
 
     //Digletts
@@ -91,6 +91,7 @@ public class ClassicGameMode : MonoBehaviour
         
         if(TipoDePartida == "Batalla") IsBattle = true;
         if(IsBattle)TextoVida.SetText(Vida.ToString());
+        if(IsBattle)TextoDinero.SetText(Money.ToString()+"$");
 
         // COMPROBAR SETTINGS DE USUARIO
         MapaString = playerInstance._GameData.gameData._MapaSkinCustom;
@@ -140,8 +141,9 @@ public class ClassicGameMode : MonoBehaviour
     public void AddMoney(int money)
     {
         if(IsBattle){
-            Money += money/10;
-            TextoDinero.SetText(Mathf.Floor(Money).ToString()+"$");
+            Money += Mathf.Round(money)/10;
+            Debug.Log("DINERO "+Money);
+            TextoDinero.SetText(Money.ToString(".0#")+"$");
         }
 
     }
@@ -335,12 +337,20 @@ public class ClassicGameMode : MonoBehaviour
         paused=!paused;
         MenuDePausa.SetActive(paused);
     }
+
+
     private void JuegoTerminado()
     {
         playerInstance._GameData.gameData._dineroP+=Money;
+        Debug.Log("dinero " + Money);
+        Debug.Log("dineroUsuario " + playerInstance._GameData.gameData._dineroP);
+        if(IsBattle)TiempoDeLaPartida = TimeNormalizado;
                   // public void GuardarClassicGame(    PlayerGameData _g,           string GameType,       string _jugador,                      int _puntuacion,     float _tiempo, float _dinero)
         playerInstance._GameData.GuardarClassicGame(playerInstance._GameData.gameData, TipoDePartida, playerInstance._GameData.gameData._username, PuntuacionPartida, TiempoDeLaPartida, Money);
         
+        
+
+        // TimeNormalizado
         juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
         paused=!paused;
