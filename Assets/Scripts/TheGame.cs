@@ -69,7 +69,10 @@ public class TheGame : MonoBehaviour
         //     }
     }
 
-
+    public void LogOut()
+    {
+        PlayerPrefs.SetInt("AutoLogIn",0);
+    }
 }
 
 
