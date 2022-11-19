@@ -51,6 +51,7 @@ public class MenuController : MonoBehaviour
             camara = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
             WelcomePlayer();
             MoneyCountText();
+            SoldOutCheck();
         }
     }
 
@@ -219,28 +220,142 @@ public class MenuController : MonoBehaviour
         Content.SetText($"{Round(currentMoney,2)}");
     }
 
+    //SoldOutCheck
+    public void SoldOutCheck()
+    {
+
+        //go to Objects in Power Ups
+        GameObject PowerUpsObjects = ShopMenu.transform.GetChild(3).gameObject.transform.GetChild(4).gameObject;
+
+        //go item by item
+
+        if (playerInstance._GameData.gameData._NivelTorreta == 1)
+        {
+            PowerUpsObjects.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+        };
+        if (playerInstance._GameData.gameData._NivelTorreta == 2)
+        {
+            PowerUpsObjects.gameObject.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+        };
+        if (playerInstance._GameData.gameData._NivelTorreta == 3)
+        {
+            PowerUpsObjects.gameObject.transform.GetChild(2).gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+        };
+
+        //go to Objects in Cursors
+        GameObject CursorsObjects = ShopMenu.transform.GetChild(4).gameObject.transform.GetChild(4).gameObject;
+
+        //go item by item
+        if (playerInstance._GameData.gameData._pointer1 == true)
+        {
+            CursorsObjects.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+        };
+        if (playerInstance._GameData.gameData._pointer2 == true)
+        {
+            CursorsObjects.gameObject.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+        };
+        if (playerInstance._GameData.gameData._Map3 == true)
+        {
+            CursorsObjects.gameObject.transform.GetChild(2).gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+        };
+        if (playerInstance._GameData.gameData._Map4 == true)
+        {
+            CursorsObjects.gameObject.transform.GetChild(3).gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+        };
+
+
+        GameObject CursorButtons = PointersMenu.transform.GetChild(1).gameObject;
+        if (playerInstance._GameData.gameData._pointer1 == true)
+        {
+            CursorButtons.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        };
+        if (playerInstance._GameData.gameData._pointer2 == true)
+        {
+            CursorButtons.gameObject.transform.GetChild(2).gameObject.transform.GetChild(1).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        };
+
+
+        GameObject MapButtons = MapsMenu.transform.GetChild(4).gameObject;
+
+        if (playerInstance._GameData.gameData._Map3 == true)
+        {
+            MapButtons.gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        };
+        if (playerInstance._GameData.gameData._Map4 == true)
+        {
+            MapButtons.gameObject.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        };
+
+    }
+
 
     //Buy item
     public void BuyItem()
     {
-        TextMeshProUGUI selectedGameObjectText = EventSystem.current.currentSelectedGameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
-        if (selectedGameObjectText.text != "Sold Out") {
-        float itemCost = float.Parse(selectedGameObjectText.text);
-        Debug.Log(itemCost);
+        GameObject selectedGameObject = EventSystem.current.currentSelectedGameObject;
+        string selectedGameName = selectedGameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text;
+        string selectedGameObjectText = selectedGameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text;
 
-        if (playerInstance._GameData.gameData._dineroP < itemCost)
-        {
-            StartCoroutine(PopUpClick(Extramoney, "You are too poor to buy it"));
-        }
-        else
-        {
-            float moneyLeft = playerInstance._GameData.gameData._dineroP - itemCost;
+        if (selectedGameObjectText != "Sold Out") {
+            float itemCost = float.Parse(selectedGameObjectText);
+            Debug.Log(itemCost);
 
-            playerInstance._GameData.gameData._dineroP = moneyLeft;
-            playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
-            selectedGameObjectText.text = "Sold Out";
-            MoneyCountText();
-        }
+            if (playerInstance._GameData.gameData._dineroP < itemCost)
+            {
+                StartCoroutine(PopUpClick(Extramoney, "You are too poor to buy it"));
+            }
+            else
+            {
+                float moneyLeft = playerInstance._GameData.gameData._dineroP - itemCost;
+
+                //Update Data
+                playerInstance._GameData.gameData._dineroP = moneyLeft;
+                playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+
+
+                if (selectedGameName == "CLASSIC")
+                {
+                    playerInstance._GameData.gameData._pointer1 = true;
+                    PointersMenu.transform.GetChild(1).gameObject.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+
+                };
+                if (selectedGameName == "LIGHTSABER")
+                {
+                    playerInstance._GameData.gameData._pointer2 = true;
+                    PointersMenu.transform.GetChild(1).gameObject.gameObject.transform.GetChild(2).gameObject.transform.GetChild(1).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                };
+                if (selectedGameName == "DIRT MAP")
+                {
+                    playerInstance._GameData.gameData._Map3 = true;
+                    MapsMenu.transform.GetChild(4).gameObject.gameObject.transform.GetChild(2).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                };
+                if (selectedGameName == "COLOSSEUM MAP")
+                {
+                    playerInstance._GameData.gameData._Map4 = true;
+                    MapsMenu.transform.GetChild(4).gameObject.gameObject.transform.GetChild(3).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                };
+
+
+
+                if (selectedGameName == "Torreta Nv.1")
+                {
+                    playerInstance._GameData.gameData._NivelTorreta = 1;
+                };
+                if (selectedGameName == "Torreta Nv.2")
+                {
+                    playerInstance._GameData.gameData._NivelTorreta = 2;
+                };
+                if (selectedGameName == "Torreta Nv.3")
+                {
+                    playerInstance._GameData.gameData._NivelTorreta = 3;
+                };
+                playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+
+
+
+                selectedGameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold Out";
+                MoneyCountText();
+            };
         }
         else
         {
@@ -258,6 +373,14 @@ public class MenuController : MonoBehaviour
         GameObject.Find("/Customization/Buttons/PointerButton").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Menu/selectordesactivado");
         MapsMenu.SetActive(true);
         PointersMenu.SetActive(false);
+        if (playerInstance._GameData.gameData._Map3 == true)
+        {
+            MapsMenu.transform.GetChild(4).gameObject.gameObject.transform.GetChild(2).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        };
+        if (playerInstance._GameData.gameData._Map4 == true)
+        {
+            MapsMenu.transform.GetChild(4).gameObject.gameObject.transform.GetChild(3).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        };
     }
 
     public void ShowPointers()
@@ -280,9 +403,8 @@ public class MenuController : MonoBehaviour
     //Cursor
     public void ChangePointer(int number)
     {
-        bool isLocked = false;
 
-        if ((number == 3 && isLocked) || (number == 1 && isLocked))
+        if ((number == 3 && !playerInstance._GameData.gameData._pointer2) || (number == 1 && !playerInstance._GameData.gameData._pointer1))
         {
             StartCoroutine(PopUpClick(Warning, "Buy it at the store"));
         }
@@ -333,9 +455,7 @@ public class MenuController : MonoBehaviour
     public void ChangeMap(int Map)
     {
 
-        bool isLocked = false;
-
-        if ((Map == 3 && isLocked) || (Map == 4 && isLocked))
+        if ((Map == 3 && !playerInstance._GameData.gameData._Map3) || (Map == 4 && !playerInstance._GameData.gameData._Map4))
         {
             StartCoroutine(PopUpClick(Warning, "Buy it at the store"));
         }
