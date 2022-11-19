@@ -37,20 +37,22 @@ public class LoggIn : MonoBehaviour
             playerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<TheGame>();
         }
 
-        if(PlayerPrefs.GetString("LastUser") =="")
+        // NUNCA SE INICIO EL JUEGO
+        if(PlayerPrefs.GetString("LastUser","") =="")
         {
             loginToggle.isOn = false;
             Debug.Log("ES MI PRIMERITO DIA");
         }
         else
         {
+            // CARGAR ULTIMO NOMBRE
             name.text = PlayerPrefs.GetString("LastUser");
             Debug.Log("NO SOY NUEVO" + PlayerPrefs.GetInt("AutoLogIn"));
             loginToggle.isOn = (PlayerPrefs.GetInt("AutoLogIn") == 1) ? true : false;
             Debug.Log("ENTRAR? "+loginToggle.isOn);
         }
 
-        
+        // SI EL ULTIMO USUARIO DEBE ENTRAR AUTOMATICO 
 		if(loginToggle.isOn)
         {
             Debug.Log("ENTRA AUTOMATICO");
