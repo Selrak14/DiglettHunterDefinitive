@@ -259,7 +259,7 @@ public class MenuController : MonoBehaviour
         StartCoroutine(PopUpClick(ConfirmationPopup));
 
         Debug.Log("Map "+Map);
-        Sprite imageSelection = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map + 1}").GetComponent<Image>().sprite;
+        Sprite imageSelection = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map}").GetComponent<Image>().sprite;
         GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = imageSelection;
 
         // Guardar Nombre en preferencias
