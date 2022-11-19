@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class LeaderBoard : MonoBehaviour
@@ -36,6 +37,10 @@ public class LeaderBoard : MonoBehaviour
     void OnLoadLeaderboard()
     {
 
+    }
+    public void Retroceder()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
     void HideAll(){

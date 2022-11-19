@@ -8,7 +8,7 @@ public class PlayerGameData
     public List<Partidas> PartidasClasicas;
     public List<Partidas> PartidasContraReloj;
     public List<Partidas> PartidasBatalla;
-    public float _dinero = 0;
+    public float _dineroP = 0;
 
     // CONFIGURACION DEL USUARIO
     public string _MapaSkinCustom;
@@ -24,10 +24,10 @@ public class Partidas
     public string jugador;
     public int puntuacion;
     public float tiempo;
-    public int dinero;
+    public float dinero;
     
 
-    public Partidas(string _jugador, int _puntuacion, float _tiempo, int _dinero)
+    public Partidas(string _jugador, int _puntuacion, float _tiempo, float _dinero)
     {
         this.jugador = _jugador;
         this.puntuacion = _puntuacion;

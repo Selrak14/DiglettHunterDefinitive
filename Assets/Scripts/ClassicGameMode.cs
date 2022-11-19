@@ -337,7 +337,10 @@ public class ClassicGameMode : MonoBehaviour
     }
     private void JuegoTerminado()
     {
-        playerInstance._GameData.GuardarClassicGame(playerInstance._GameData.gameData,TipoDePartida, playerInstance._GameData.gameData._username, PuntuacionPartida, TiempoDeLaPartida, 0);
+        playerInstance._GameData.gameData._dineroP+=Money;
+                  // public void GuardarClassicGame(    PlayerGameData _g,           string GameType,       string _jugador,                      int _puntuacion,     float _tiempo, float _dinero)
+        playerInstance._GameData.GuardarClassicGame(playerInstance._GameData.gameData, TipoDePartida, playerInstance._GameData.gameData._username, PuntuacionPartida, TiempoDeLaPartida, Money);
+        
         juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
         paused=!paused;
