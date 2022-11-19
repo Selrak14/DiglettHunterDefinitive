@@ -10,21 +10,26 @@ public class Torrta : MonoBehaviour
     // float Speed = 8f;
     bool isBala = false;
     Vector2 moverse;
+    public GameObject _b;
     GameObject b;
+    int NivelTorretaUsuario;
     // Transform[] ts;
     
 
     void Start()
     {
         // ts = gameObject.GetComponentsInChildren<Transform>();
-        _Time = VelTorreta;
+        _Time = VelTorreta - NivelTorretaUsuario +.1f ;
+
         // mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         // mouseWorldPosition.z = 0f;
         // transform.position = new Vector3(50f,20f ,-2f);
     }
 
 
-
+    public void SetNivelTorreta(int n){
+        NivelTorretaUsuario = n;
+    }
     IEnumerator DestroyBala(GameObject bala)
     {
         Vector3 m = new Vector3( moverse[0],moverse[1],0f );
@@ -40,29 +45,36 @@ public class Torrta : MonoBehaviour
 
     public Vector2 RandomUnitVector()
     {
-        float random = Random.Range(0f, 2f);
+        float random = Random.Range(0f, 1.6f);
         return new Vector2(Mathf.Cos(random), Mathf.Sin(random));
     }
     GameObject CrearBala()
     {
         // GENRAR
+        
         isBala = true;
-        GameObject bala = new GameObject("bala");
-        bala.AddComponent<Image>();
-        bala.AddComponent<BoxCollider2D>();
-        bala.AddComponent<Rigidbody2D>();
-        bala.transform.parent = gameObject.transform;
+        var bala = Instantiate<GameObject>(_b);
+        // GameObject bala = new GameObject("bala");
+        // bala.AddComponent<Image>();
+        // bala.AddComponent<BoxCollider2D>();
+        // bala.AddComponent<Rigidbody2D>();
+        // bala.tag = "Bomba" ;
+        // bala.transform.parent = gameObject.transform;
         StartCoroutine(DestroyBala(bala)); 
         moverse = RandomUnitVector();
         Debug.Log("DIRECCION BALA "+moverse.ToString());
         //MOVER EN EL TIEMPO
         return bala;
+
+        
+
+
     }
 
     void MoverBala(GameObject _bala)
     {
-        Vector3 m = new Vector3( moverse[0],moverse[1],0f )*6f;
-        Debug.Log("DESPLAZAR");
+        Vector3 m = new Vector3( moverse[0],moverse[1],0f )*.1f;
+        Debug.Log("DESPLAZAR" + m.ToString());
         _bala.transform.position += m;
     }
     
@@ -73,7 +85,7 @@ public class Torrta : MonoBehaviour
         _Time-= Time.deltaTime;
         if(_Time <=0 & !isBala){
             b = CrearBala();
-            _Time = VelTorreta;
+            _Time = VelTorreta - NivelTorretaUsuario +.1f ;;
             }
         if (isBala)MoverBala(b);
 

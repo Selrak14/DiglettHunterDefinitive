@@ -11,7 +11,7 @@ public class PlayerGameData
     public float _dineroP = 0;
 
     // CONFIGURACION DEL USUARIO
-    public string _MapaSkinCustom;
+    public string _MapaSkinCustom = "beach";
     public string _PointerCustom = "Maza";
 
     //  COMPRAS
@@ -20,8 +20,8 @@ public class PlayerGameData
     public bool _Map3;
     public bool _Map4;
 
-    public int _NivelTorreta;
-    
+    public int _NivelTorreta = 0;
+
     
 
     // CONSTRCTOR

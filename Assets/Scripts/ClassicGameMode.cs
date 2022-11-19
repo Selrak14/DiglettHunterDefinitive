@@ -20,6 +20,7 @@ public class ClassicGameMode : MonoBehaviour
     private GameObject DebugObject;
     public GameObject HabBomba;
     public bool ModoContraReloj;
+    public GameObject Torreta;
    
     // Fondos y esteticas    
     string MapaString;
@@ -41,7 +42,7 @@ public class ClassicGameMode : MonoBehaviour
     // ControlDelTiempo
     float TiempoRealDeInicioDelClassicGameMode;
     public float TiempoEsperaInicio = 6f;
-    public float _Timer;
+    float _Timer;
     public float TiempoDeLaPartida = 30f;
     public bool TiempoDePartidaReverso = true;
     float TimeNormalizado;
@@ -72,6 +73,7 @@ public class ClassicGameMode : MonoBehaviour
             // someObject doesn't exist
             DebugObject = new GameObject("Cool GameObject made from Code");
             DebugObject.AddComponent<TheGame>();
+            DebugObject.AddComponent<GameDataManager>();
             playerInstance = DebugObject.GetComponent<TheGame>();
         }
         else
@@ -92,7 +94,11 @@ public class ClassicGameMode : MonoBehaviour
         if(TipoDePartida == "Batalla") IsBattle = true;
         if(IsBattle)TextoVida.SetText(Vida.ToString());
         if(IsBattle)TextoDinero.SetText(Money.ToString()+"$");
-
+        if(IsBattle & playerInstance._GameData.gameData._NivelTorreta >=1)
+        {
+            Torreta.SetActive(true);
+            Torreta.GetComponent<Torrta>().SetNivelTorreta(playerInstance._GameData.gameData._NivelTorreta);
+        }
         // COMPROBAR SETTINGS DE USUARIO
         MapaString = playerInstance._GameData.gameData._MapaSkinCustom;
         Debug.Log("MAPA SPRITE A CARGAR "+MapaString);
