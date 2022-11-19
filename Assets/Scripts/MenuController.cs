@@ -220,7 +220,7 @@ public class MenuController : MonoBehaviour
         bool isLocked = true;
         TextMeshProUGUI Content = GameObject.Find($"/Customization/PointerSelectionWindow/Warning/Content").GetComponent<TextMeshProUGUI>();
 
-        if (number == 3 && isLocked)
+        if ((number == 3 && isLocked) || (number == 1 && isLocked))
         {
             Content.SetText("Buy it at the store");
             StartCoroutine(PopUpClick(GameObject.Find($"/Customization/PointerSelectionWindow/Warning")));
