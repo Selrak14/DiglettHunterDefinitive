@@ -2223,7 +2223,7 @@ MonoBehaviour:
   - {fileID: 8551307676804739593, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
   - {fileID: 3039649592022858599, guid: 2892f7bc597db7b4eb84ebd0978dacc4, type: 3}
   - {fileID: 8991745768265889118, guid: b8c565679c9e8ef4e93ba5e9c8b6540e, type: 3}
-  RandomPosition: 1
+  RandomPosition: 0
   listOfPosition:
   - {x: -6.25, y: 0.15}
   - {x: 0, y: 0.15}
