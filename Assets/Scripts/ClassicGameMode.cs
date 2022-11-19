@@ -28,7 +28,7 @@ public class ClassicGameMode : MonoBehaviour
     // Puntuaciones
     int PuntuacionPartida = 0;
     int Money = 0;
-    int Vida = 0;
+    int Vida = 500;
 
     //Digletts
     public List<GameObject> DiglettList = new List<GameObject>();
@@ -85,6 +85,7 @@ public class ClassicGameMode : MonoBehaviour
         TimerInstance.InicioCuentaAtras(TiempoEsperaInicio);
         StartInGameTime();
         MenuDePausa.SetActive(paused);
+        TextoVida.SetText(Vida.ToString());
 
         // COMPROBAR SETTINGS DE USUARIO
         MapaString = playerInstance._GameData.gameData._MapaSkinCustom;
@@ -140,7 +141,7 @@ public class ClassicGameMode : MonoBehaviour
 
     public void AddVida(int vida)
     {
-        Vida = vida;
+        Vida -= vida;
         TextoVida.SetText(Vida.ToString());
     }
 
@@ -193,7 +194,8 @@ public class ClassicGameMode : MonoBehaviour
     private Vector2 seleccionaAgujero(bool rp)
     {
         if(rp)
-        {
+        {   
+
             if(listOfPosition.Count == 0)
             {
                 Debug.Log("No hay espacio disponible");
@@ -206,6 +208,9 @@ public class ClassicGameMode : MonoBehaviour
         }
         else
         {
+            if(TipoDePartida == "Batalla"){
+                return new Vector2(Random.Range(-8f,8f), Random.Range(1.5f,-4f));
+            }
             return new Vector2((Random.value-Random.value)*8, (Random.value-Random.value)*5);
         }
 

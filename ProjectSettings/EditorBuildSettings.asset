@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LeaderBoard.unity
     guid: d88a60f491f44214a93be09f0d808484
+  - enabled: 1
+    path: Assets/Scenes/Batalla.unity
+    guid: 8c76518f450aad44bbc9a781c810d5d2
   m_configObjects: {}

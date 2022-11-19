@@ -43,7 +43,7 @@ public class DiglettBase : MonoBehaviour
         {
             GameInstance.AnyadirPosicion(gameObject.transform.position);
             Destroy(gameObject);
-            GameInstance.AddVida(puntuacionDiglett);
+            GameInstance.AddVida(1);
         }
     }
 
