@@ -14,6 +14,8 @@ public class ClassicGameMode : MonoBehaviour
     public GameObject MenuDeFin;
     [SerializeField] private TextMeshProUGUI TextoPuntuacion;
     [SerializeField] private TextMeshProUGUI TiempoDePartidaTexto;
+    [SerializeField] private TextMeshProUGUI TextoVida;
+    [SerializeField] private TextMeshProUGUI TextoDinero;
     Timer TimerInstance;
     private GameObject DebugObject;
     public GameObject HabBomba;
@@ -25,6 +27,8 @@ public class ClassicGameMode : MonoBehaviour
 
     // Puntuaciones
     int PuntuacionPartida = 0;
+    int Money = 0;
+    int Vida = 0;
 
     //Digletts
     public List<GameObject> DiglettList = new List<GameObject>();
@@ -32,6 +36,7 @@ public class ClassicGameMode : MonoBehaviour
     public List<Vector2> listOfPosition = new List<Vector2>();
     public GameObject DiglettBase;
     public float TimeBeteenSpawn = .5f;
+    
 
     // ControlDelTiempo
     float TiempoRealDeInicioDelClassicGameMode;
@@ -124,6 +129,19 @@ public class ClassicGameMode : MonoBehaviour
         PuntuacionPartida+=puntos;
         TextoPuntuacion.SetText(PuntuacionPartida.ToString());
 
+    }
+
+    public void AddMoney(int money)
+    {
+        Money += money;
+        TextoDinero.SetText(Money.ToString());
+    }
+
+
+    public void AddVida(int vida)
+    {
+        Vida = vida;
+        TextoVida.SetText(Vida.ToString());
     }
 
     // MODO CONTRARRELOJ

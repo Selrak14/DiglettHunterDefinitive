@@ -8,6 +8,7 @@ public class PlayerGameData
     public List<Partidas> PartidasClasicas;
     public List<Partidas> PartidasContraReloj;
     public List<Partidas> PartidasBatalla;
+    public int _dinero = 0;
 
     // CONFIGURACION DEL USUARIO
     public string _MapaSkinCustom;

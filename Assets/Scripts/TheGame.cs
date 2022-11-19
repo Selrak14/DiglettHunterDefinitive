@@ -9,10 +9,13 @@ public class TheGame : MonoBehaviour
     public GameDataManager _GameData;
     
 
+    void Start()
+    {
+        _GameData.readFile(PlayerPrefs.GetString("LastUser"));
+    }
 
 
-
-    public void LogOut()
+    void LogOut()
     {
         PlayerPrefs.SetInt("AutoLogIn",0);
     }
