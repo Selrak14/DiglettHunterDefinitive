@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Torrta : MonoBehaviour
 {
-    
-    float _Time = 3f;
-    float Speed = 8f;
+    public float VelTorreta = 3f;
+    float _Time;
+    // float Speed = 8f;
     bool isBala = false;
     Vector2 moverse;
     GameObject b;
@@ -17,7 +17,7 @@ public class Torrta : MonoBehaviour
     void Start()
     {
         // ts = gameObject.GetComponentsInChildren<Transform>();
-        _Time = 0;
+        _Time = VelTorreta;
         // mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         // mouseWorldPosition.z = 0f;
         // transform.position = new Vector3(50f,20f ,-2f);
@@ -73,7 +73,7 @@ public class Torrta : MonoBehaviour
         _Time-= Time.deltaTime;
         if(_Time <=0 & !isBala){
             b = CrearBala();
-            _Time = 3f;
+            _Time = VelTorreta;
             }
         if (isBala)MoverBala(b);
 
