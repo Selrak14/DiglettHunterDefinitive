@@ -6,70 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class TheGame : MonoBehaviour
 {
-    public int toposDeLaPartida;
-    public string ActualUser;
     public GameDataManager _GameData;
     
 
-    // public void SetUserVariable(string Key, string value)
-    // {
-    //     string name = GetUserName();
-    //     PlayerPrefs.SetString(name+"."+Key, value); // 4
-
-    // }
-
-
-    public string SetName(string name)
+    void Start()
     {
-        Debug.Log("SET  NAME TO: "+name);
-        PlayerPrefs.SetString("username", name); // 4
-        PlayerPrefs.Save(); // 5
-        return name;
+        _GameData.readFile(PlayerPrefs.GetString("LastUser"));
     }
 
 
-    public void SetLastName(string _lastname)
-    {
-        PlayerPrefs.SetString("LastUser", _lastname); 
-        PlayerPrefs.Save(); 
-    }
-
-
-
-    // public void GuardarPartidaJSON(string j, int p, int t, bool modo1)
-    // {
-    //         // string jugador;
-    //         // int puntuacion;
-    //         // int tiempo;
-    //         Debug.Log("GuardarPartidaAJson");
-    //         if(modo1)_GameData.gameData.PartidasContraReloj.Add(new Partidas(j, p, t));
-    //         if(!modo1)_GameData.gameData.PartidasClasicas.Add(new Partidas(j, p, t));
-    //         Debug.Log("QUE SE GUARDA?"+_GameData.gameData.PartidasClasicas[1].jugador);
-    //         _GameData.writeFile();
-    // }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-            Debug.Log("Pressed primary button.");
-
-        if (Input.GetMouseButtonDown(1)){
-            Debug.Log("Pressed secondary button.");
-            // SceneManager.LoadScene("LeaderBoard");
-        }
-        
-        if (Input.GetMouseButtonDown(2))
-            Debug.Log("Pressed middle click.");
-
-
-        // if (Input.GetKeyDown("j")){
-        //     _GameData.DANGERDELETEFILE();
-        //     Debug.Log("JJJJ");
-        //     }
-    }
-
-    public void LogOut()
+    void LogOut()
     {
         PlayerPrefs.SetInt("AutoLogIn",0);
     }
