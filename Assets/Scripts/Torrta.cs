@@ -10,6 +10,7 @@ public class Torrta : MonoBehaviour
     // float Speed = 8f;
     bool isBala = false;
     Vector2 moverse;
+    public GameObject _b;
     GameObject b;
     // Transform[] ts;
     
@@ -46,23 +47,30 @@ public class Torrta : MonoBehaviour
     GameObject CrearBala()
     {
         // GENRAR
+        
         isBala = true;
-        GameObject bala = new GameObject("bala");
-        bala.AddComponent<Image>();
-        bala.AddComponent<BoxCollider2D>();
-        bala.AddComponent<Rigidbody2D>();
-        bala.transform.parent = gameObject.transform;
+        var bala = Instantiate<GameObject>(_b);
+        // GameObject bala = new GameObject("bala");
+        // bala.AddComponent<Image>();
+        // bala.AddComponent<BoxCollider2D>();
+        // bala.AddComponent<Rigidbody2D>();
+        // bala.tag = "Bomba" ;
+        // bala.transform.parent = gameObject.transform;
         StartCoroutine(DestroyBala(bala)); 
         moverse = RandomUnitVector();
         Debug.Log("DIRECCION BALA "+moverse.ToString());
         //MOVER EN EL TIEMPO
         return bala;
+
+        
+
+
     }
 
     void MoverBala(GameObject _bala)
     {
-        Vector3 m = new Vector3( moverse[0],moverse[1],0f )*6f;
-        Debug.Log("DESPLAZAR");
+        Vector3 m = new Vector3( moverse[0],moverse[1],0f )*.1f;
+        Debug.Log("DESPLAZAR" + m.ToString());
         _bala.transform.position += m;
     }
     
