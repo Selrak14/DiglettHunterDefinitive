@@ -49,6 +49,8 @@ public class Torrta : MonoBehaviour
         isBala = true;
         GameObject bala = new GameObject("bala");
         bala.AddComponent<Image>();
+        bala.AddComponent<BoxCollider2D>();
+        bala.AddComponent<Rigidbody2D>();
         bala.transform.parent = gameObject.transform;
         StartCoroutine(DestroyBala(bala)); 
         moverse = RandomUnitVector();

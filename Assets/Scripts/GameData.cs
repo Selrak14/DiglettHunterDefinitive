@@ -13,6 +13,15 @@ public class PlayerGameData
     // CONFIGURACION DEL USUARIO
     public string _MapaSkinCustom;
     public string _PointerCustom = "Maza";
+
+    //  COMPRAS
+    public bool _pointer1;
+    public bool _pointer2;
+    public bool _Map3;
+    public bool _Map4;
+
+    public int _NivelTorreta;
+    
     
 
     // CONSTRCTOR
