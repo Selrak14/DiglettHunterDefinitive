@@ -203,6 +203,13 @@ public class MenuController : MonoBehaviour
         MapsMenu.SetActive(false);
     }
 
+    public void LogOut()
+    {
+        PlayerPrefs.SetInt("AutoLogIn", 0);
+        PlayerPrefs.Save();
+        LoadGame("LoggIn");
+    }
+
     //Pointers
     public void ChangePointer(int number)
     {
