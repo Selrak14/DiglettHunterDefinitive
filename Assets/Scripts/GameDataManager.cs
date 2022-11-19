@@ -76,7 +76,7 @@ public class GameDataManager : MonoBehaviour
         File.WriteAllText(_saveFile, jsonString);
     }
 
-    public void GuardarClassicGame(PlayerGameData _g,string GameType, string _jugador, int _puntuacion, float _tiempo, int _dinero)
+    public void GuardarClassicGame(PlayerGameData _g, string GameType, string _jugador, int _puntuacion, float _tiempo, float _dinero)
     {
         Partidas _partida = new Partidas(_jugador, _puntuacion, _tiempo, _dinero);
         if(GameType == "ClassicMode")_g.PartidasClasicas.Add(_partida);
@@ -100,6 +100,7 @@ public class GameDataManager : MonoBehaviour
             Text[] texts = newGo.GetComponentsInChildren<Text>();
             texts[0].text = item.jugador;
             texts[1].text = item.puntuacion.ToString();
+            texts[2].text = item.tiempo.ToString();
         }
         foreach (var item in SortedListReloj)
         {
