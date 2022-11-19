@@ -2207,7 +2207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1a3b4b4406a974dbf165f12c49af26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TipoDePartida: ClassicMode
+  TipoDePartida: ContraReloj
   MenuDePausa: {fileID: 664590588}
   MenuDeFin: {fileID: 780148685}
   TextoPuntuacion: {fileID: 1583269439}
