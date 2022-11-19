@@ -10,6 +10,7 @@ TagManager:
   - Map
   - Login
   - Bomba
+  - Follow
   layers:
   - Default
   - TransparentFX
