@@ -27,8 +27,8 @@ public class ClassicGameMode : MonoBehaviour
 
     // Puntuaciones
     int PuntuacionPartida = 0;
-    int Money = 0;
-    int Vida = 500;
+    float Money = 0;
+    public int Vida = 20;
 
     //Digletts
     public List<GameObject> DiglettList = new List<GameObject>();
@@ -50,6 +50,9 @@ public class ClassicGameMode : MonoBehaviour
     float _Acelerador;
     bool IsAccelerating;
     float BombaMejoraEspera;
+
+    // Otros
+    bool IsBattle = false;
 
     
 
@@ -85,7 +88,9 @@ public class ClassicGameMode : MonoBehaviour
         TimerInstance.InicioCuentaAtras(TiempoEsperaInicio);
         StartInGameTime();
         MenuDePausa.SetActive(paused);
-        TextoVida.SetText(Vida.ToString());
+        
+        if(TipoDePartida == "Batalla") IsBattle = true;
+        if(IsBattle)TextoVida.SetText(Vida.ToString());
 
         // COMPROBAR SETTINGS DE USUARIO
         MapaString = playerInstance._GameData.gameData._MapaSkinCustom;
@@ -134,15 +139,22 @@ public class ClassicGameMode : MonoBehaviour
 
     public void AddMoney(int money)
     {
-        Money += money;
-        TextoDinero.SetText(Money.ToString());
+        if(IsBattle){
+            Money += money/10;
+            TextoDinero.SetText(Mathf.Floor(Money).ToString()+"$");
+        }
+
     }
 
 
     public void AddVida(int vida)
     {
-        Vida -= vida;
-        TextoVida.SetText(Vida.ToString());
+        if(IsBattle)
+        {
+            Vida -= vida;
+            TextoVida.SetText(Vida.ToString()); 
+        }
+       
     }
 
     // MODO CONTRARRELOJ
@@ -336,7 +348,7 @@ public class ClassicGameMode : MonoBehaviour
         IsAccelerating = true;
         Debug.Log("Acelerador: NEW CORROTIEN"+_Acelerador);
         yield return new WaitForSeconds(4f);
-        if (_Acelerador >= TimeBeteenSpawn/1.2){_Acelerador = _Acelerador;}
+        if (_Acelerador >= TimeBeteenSpawn/1.01){_Acelerador = _Acelerador;}
         else{
             _Acelerador+=Acelerador;
         } 
@@ -353,8 +365,12 @@ public class ClassicGameMode : MonoBehaviour
 
 
         
-        if(TimeNormalizado >= TiempoDeLaPartida+TiempoEsperaInicio)
+        if(TimeNormalizado >= TiempoDeLaPartida+TiempoEsperaInicio & !IsBattle)
         {
+            JuegoTerminado();
+        }
+        if(IsBattle){
+            if(Vida <=0)
             JuegoTerminado();
         }
 

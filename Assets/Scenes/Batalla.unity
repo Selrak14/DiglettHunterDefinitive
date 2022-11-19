@@ -701,7 +701,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 3.4122314, z: -242.67339, w: -2.3098335}
+  m_margin: {x: 0, y: 3.4122314, z: 7.742447, w: -2.3098335}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1002,6 +1002,7 @@ MonoBehaviour:
   TextoDinero: {fileID: 823924138}
   HabBomba: {fileID: 1668379437029470046, guid: 19adea0bceb13a348be6a3b59efa7286, type: 3}
   ModoContraReloj: 0
+  Vida: 20
   DiglettList:
   - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
   - {fileID: 8551307676804739593, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}

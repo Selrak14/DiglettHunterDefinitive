@@ -43,7 +43,7 @@ public class DiglettBase : MonoBehaviour
         {
             GameInstance.AnyadirPosicion(gameObject.transform.position);
             Destroy(gameObject);
-            GameInstance.AddVida(1);
+            GameInstance.AddVida(puntuacionDiglett);
         }
     }
 
@@ -86,7 +86,7 @@ public class DiglettBase : MonoBehaviour
                 // AÑADIR PUNTOS
                 GameInstance.AddPuntuation(puntuacionDiglett);
                 GameInstance.AddMoney(puntuacionDiglett);
-                GameInstance.AddVida(0);
+                
                 
                 GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
                 Debug.Log("Box Clicked!");
@@ -120,7 +120,7 @@ public class DiglettBase : MonoBehaviour
             // AÑADIR PUNTOS
             GameInstance.AddPuntuation(puntuacionDiglett);
             GameInstance.AddMoney(puntuacionDiglett);
-            GameInstance.AddVida(0);
+            
             GameInstance.ModoContrarelojTiempoAnyadido(ContraRelojTiempoAnyadir);
             Debug.Log("Box Clicked!");
             
