@@ -21,7 +21,7 @@ public class LoggIn : MonoBehaviour
         //     loginToggle.isOn = true;
         // }
         // else
-
+        
         if(GameObject.FindGameObjectsWithTag("GameController").Length == 0)
         {
             Debug.Log("NO HAY THE GAME");
@@ -51,6 +51,7 @@ public class LoggIn : MonoBehaviour
             loginToggle.isOn = (PlayerPrefs.GetInt("AutoLogIn") == 1) ? true : false;
             Debug.Log("ENTRAR? "+loginToggle.isOn);
         }
+        playerInstance.activarmusica();
 
         // SI EL ULTIMO USUARIO DEBE ENTRAR AUTOMATICO 
 		if(loginToggle.isOn)

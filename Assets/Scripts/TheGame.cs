@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class TheGame : MonoBehaviour
 {
     public GameDataManager _GameData;
+    public AudioSource Musica;
     
 
     void Start()
@@ -19,8 +20,13 @@ public class TheGame : MonoBehaviour
     {
         PlayerPrefs.SetInt("AutoLogIn",0);
     }
-}
 
+        public void activarmusica()
+    {
+        Musica.Play();
+    }
+
+}
 
 
 

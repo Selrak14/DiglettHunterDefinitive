@@ -9,6 +9,7 @@ public class PantallaDeCarga : MonoBehaviour
     public Animator transition;
     private int actualScene;
     public AudioSource CamionCrash;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class PantallaDeCarga : MonoBehaviour
         Debug.Log(actualScene);
         
     }
+
 
     // Update is called once per frame
     void Update()

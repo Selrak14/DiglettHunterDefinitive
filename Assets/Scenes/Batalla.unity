@@ -1165,7 +1165,7 @@ MonoBehaviour:
   - {x: 0, y: -2.67}
   - {x: 6.25, y: -2.67}
   DiglettBase: {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
-  TimeBeteenSpawn: 2
+  TimeBeteenSpawn: 0.2
   TiempoEsperaInicio: 3
   TiempoDeLaPartida: 1
   TiempoDePartidaReverso: 1
