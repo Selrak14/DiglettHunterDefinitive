@@ -51,6 +51,8 @@ public class ClassicGameMode : MonoBehaviour
     float _Acelerador;
     bool IsAccelerating;
     float BombaMejoraEspera;
+    bool BombaCoolDown = true;
+    bool PartidaTerminada;
 
     // Otros
     bool IsBattle = false;
@@ -168,15 +170,16 @@ public class ClassicGameMode : MonoBehaviour
     // MODO CONTRARRELOJ
     public void ModoContrarelojTiempoAnyadido(float TiempoAnyadir)
     {
+        float escala = 200f;
         // Modificar que el tiempo sea menro como avanza la partida 
         if(ModoContraReloj)
         {
-            if(TiempoAnyadir * TimeNormalizado/100f >=TiempoAnyadir)
+            if(TiempoAnyadir * TimeNormalizado/escala >=TiempoAnyadir)
             {
                 TiempoDeLaPartida+=.01f;
             }
             else{
-                TiempoDeLaPartida+=TiempoAnyadir-(TiempoAnyadir * TimeNormalizado/100f);
+                TiempoDeLaPartida+=TiempoAnyadir-(TiempoAnyadir * TimeNormalizado/escala);
             }
         }
         
@@ -247,15 +250,42 @@ public class ClassicGameMode : MonoBehaviour
         return retunrer;
     }
 
-    private void GenerarBomba()
+     IEnumerator coolDown()
     {
-       for (int i = 0; i < 3; i++)
-       {
+        yield return new WaitForSeconds(10f);
+        BombaCoolDown = true;
+    }
+
+     IEnumerator nuevaBomba()
+    {
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0f;
         var Inst = Instantiate<GameObject>(HabBomba);
         Inst.transform.position = mouseWorldPosition;
-        }
+        
+        yield return new WaitForSeconds(.5f);
+
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f;
+        Inst = Instantiate<GameObject>(HabBomba);
+        Inst.transform.position = mouseWorldPosition;
+        
+        yield return new WaitForSeconds(.5f);
+
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f;
+        Inst = Instantiate<GameObject>(HabBomba);
+        Inst.transform.position = mouseWorldPosition;
+        
+        yield return new WaitForSeconds(.5f);
+       
+    }
+
+    private void GenerarBomba()
+    {
+        BombaCoolDown = false;
+        StartCoroutine(nuevaBomba());
+        StartCoroutine( coolDown());
     }
 
     IEnumerator BombaMejoraEsperaSet()
@@ -347,6 +377,7 @@ public class ClassicGameMode : MonoBehaviour
 
     private void JuegoTerminado()
     {
+        PartidaTerminada = true;
         playerInstance._GameData.gameData._dineroP+=Money;
         Debug.Log("dinero " + Money);
         Debug.Log("dineroUsuario " + playerInstance._GameData.gameData._dineroP);
@@ -359,7 +390,7 @@ public class ClassicGameMode : MonoBehaviour
         // TimeNormalizado
         juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
-        paused=!paused;
+        paused=true;
         MenuDeFin.SetActive(true);
     }
     IEnumerator AcelerarTiempo()
@@ -367,7 +398,7 @@ public class ClassicGameMode : MonoBehaviour
         IsAccelerating = true;
         Debug.Log("Acelerador: NEW CORROTIEN"+_Acelerador);
         yield return new WaitForSeconds(4f);
-        if (_Acelerador >= TimeBeteenSpawn/1.01){_Acelerador = _Acelerador;}
+        if (_Acelerador >= TimeBeteenSpawn/1.1){_Acelerador = _Acelerador;}
         else{
             _Acelerador+=Acelerador;
         } 
@@ -414,17 +445,17 @@ public class ClassicGameMode : MonoBehaviour
         // DEBUG 
         if (Input.GetMouseButtonDown(2))
         {
-            GenerarBomba();
+            if(BombaCoolDown & IsBattle)GenerarBomba();
             Debug.Log("Pressed middle click.");
         }
-        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        // Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             
         
         // AL PAUSAR EL JUEGO
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Escape key was pressed");
-            JuegoPausado();
+            if (!PartidaTerminada )JuegoPausado();
         }
 
 

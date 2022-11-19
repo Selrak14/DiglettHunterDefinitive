@@ -65,7 +65,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848074405565265894, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
       propertyPath: TimeAlive
-      value: 1
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848074405565265894, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
+      propertyPath: TimeAliveAfterDeath
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4848074405565265894, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
       propertyPath: ContraRelojTiempoAnyadir

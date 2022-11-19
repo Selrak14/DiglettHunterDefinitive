@@ -75,6 +75,7 @@ public class LoggIn : MonoBehaviour
         Subida.SetTrigger("Levantar");
         yield return new WaitForSeconds(1f);
         if(loginToggle.isOn) PlayerPrefs.SetInt("AutoLogIn", 1);
+        PlayerPrefs.SetString("LastUser", name.text);
         PlayerPrefs.Save();
         LevelLoad();
     }

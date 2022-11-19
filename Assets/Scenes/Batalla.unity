@@ -918,7 +918,7 @@ PrefabInstance:
       objectReference: {fileID: 1660670652}
     - target: {fileID: 1320584447010662743, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
       propertyPath: m_RenderMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1849841648105029532, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
       propertyPath: m_Name
@@ -926,7 +926,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1849841648105029532, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2568640622740136937, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3300706963484350892, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
       propertyPath: m_Pivot.x
@@ -1011,6 +1015,22 @@ PrefabInstance:
     - target: {fileID: 3300706963484350892, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454496741041428392, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 214.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454496741041428392, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 214.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454496741041428392, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -328.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454496741041428392, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -170.27
       objectReference: {fileID: 0}
     - target: {fileID: 8391805302838727111, guid: fb48ee12e302f19409d605d20d3ab7be, type: 3}
       propertyPath: _b
@@ -1149,7 +1169,7 @@ MonoBehaviour:
   TiempoEsperaInicio: 3
   TiempoDeLaPartida: 1
   TiempoDePartidaReverso: 1
-  Acelerador: 0.1
+  Acelerador: 0.05
 --- !u!4 &1118138958
 Transform:
   m_ObjectHideFlags: 0

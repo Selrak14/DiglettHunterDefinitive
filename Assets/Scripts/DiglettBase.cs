@@ -42,8 +42,9 @@ public class DiglettBase : MonoBehaviour
         if(Time.timeSinceLevelLoad-initializationTime >= TimeAlive)
         {
             GameInstance.AnyadirPosicion(gameObject.transform.position);
-            Destroy(gameObject);
             GameInstance.AddVida(puntuacionDiglett);
+            Destroy(gameObject);
+            
         }
     }
 

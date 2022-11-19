@@ -11,6 +11,7 @@ TagManager:
   - Login
   - Bomba
   - Follow
+  - BackGround
   layers:
   - Default
   - TransparentFX

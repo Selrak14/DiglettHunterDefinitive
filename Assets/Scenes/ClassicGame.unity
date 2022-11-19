@@ -2573,8 +2573,9 @@ MonoBehaviour:
   MapsMenu: {fileID: 0}
   PointersMenu: {fileID: 0}
   ConfirmationPopup: {fileID: 0}
+  Extramoney: {fileID: 0}
+  Warning: {fileID: 0}
   WelcomeText: {fileID: 0}
-  sprites: []
 --- !u!1 &1945528084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,8 +2624,12 @@ MonoBehaviour:
   MenuDeFin: {fileID: 995771832}
   TextoPuntuacion: {fileID: 1223386001}
   TiempoDePartidaTexto: {fileID: 1604638731}
+  TextoVida: {fileID: 0}
+  TextoDinero: {fileID: 0}
   HabBomba: {fileID: 1668379437029470046, guid: 19adea0bceb13a348be6a3b59efa7286, type: 3}
   ModoContraReloj: 0
+  Torreta: {fileID: 0}
+  Vida: 20
   DiglettList:
   - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
   - {fileID: 8551307676804739593, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
@@ -2641,10 +2646,9 @@ MonoBehaviour:
   DiglettBase: {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
   TimeBeteenSpawn: 2
   TiempoEsperaInicio: 3
-  _Timer: 0
-  TiempoDeLaPartida: 30
+  TiempoDeLaPartida: 120
   TiempoDePartidaReverso: 1
-  Acelerador: 0.1
+  Acelerador: 0.07
 --- !u!1 &2034780195
 GameObject:
   m_ObjectHideFlags: 0

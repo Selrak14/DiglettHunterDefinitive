@@ -25,6 +25,7 @@ public class MenuController : MonoBehaviour
 
     private int currentScene;
     CameraMovement camara;
+    BackGroundMovement BackGround;
 
 
     private void Start()
@@ -49,6 +50,8 @@ public class MenuController : MonoBehaviour
         //Debug.Log(currentScene);
         if (currentScene == 2) { 
             camara = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+            BackGround = GameObject.FindGameObjectWithTag("BackGround").GetComponent<BackGroundMovement>();
+
             WelcomePlayer();
             MoneyCountText();
             SoldOutCheck();
@@ -62,51 +65,57 @@ public class MenuController : MonoBehaviour
         if (currentScene == 2 && Input.GetKeyDown(KeyCode.Escape))
         {
             string current_animation = camara.CurrentAnim();
-            //Debug.Log(current_animation);
-            if (current_animation == "idleCamera")
+            if (current_animation == "idleCamera"){
                 camara.ShowOptionsAnim();
-            else if (current_animation == "idleOptions")
+                BackGround.ShowOptionsAnim();}
+            else if (current_animation == "idleOptions"){
                 camara.CloseOptionsAnim();
+                BackGround.CloseOptionsAnim();}
         }
 
         if (currentScene == 2 && (Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             string current_animation = camara.CurrentAnim();
-            //Debug.Log(current_animation);
-            if (current_animation == "idleCamera")
+            if (current_animation == "idleCamera"){
                 camara.ShowOptionsAnim();
-            else if (current_animation == "idleCustom")
+                BackGround.ShowOptionsAnim();}
+            else if (current_animation == "idleCustom"){
                 camara.CloseCustomAnim();
+                BackGround.CloseCustomAnim();}
         }
 
         if (currentScene == 2 && (Input.GetKeyDown("s") || Input.GetKeyDown(KeyCode.DownArrow)))
         {
             string current_animation = camara.CurrentAnim();
-            //Debug.Log(current_animation);
-            if (current_animation == "idleCamera")
+            if (current_animation == "idleCamera"){
                 camara.ShowCustomAnim();
-            else if (current_animation == "idleOptions")
+                BackGround.ShowCustomAnim();}
+            else if (current_animation == "idleOptions"){
                 camara.CloseOptionsAnim();
+                BackGround.CloseOptionsAnim();}
         }
 
         if (currentScene == 2 && (Input.GetKeyDown("a") || Input.GetKeyDown(KeyCode.LeftArrow)))
         {
             string current_animation = camara.CurrentAnim();
-            //Debug.Log(current_animation);
-            if (current_animation == "idleCamera")
+            if (current_animation == "idleCamera"){
                 camara.ShowShopAnim();
-            else if (current_animation == "idleLevels")
+                BackGround.ShowShopAnim();}
+            else if (current_animation == "idleLevels"){
                 camara.CloseLevelsAnim();
+                BackGround.CloseLevelsAnim();}
         }
 
         if (currentScene == 2 && (Input.GetKeyDown("d") || Input.GetKeyDown(KeyCode.RightArrow)))
         {
             string current_animation = camara.CurrentAnim();
             //Debug.Log("1"+current_animation);
-            if (current_animation == "idleCamera")
+            if (current_animation == "idleCamera"){
                 camara.ShowLevelsAnim();
-            else if (current_animation == "idleShop")
+                BackGround.ShowLevelsAnim();}
+            else if (current_animation == "idleShop"){
                 camara.CloseShopAnim();
+                BackGround.CloseShopAnim();}
         }
     }
 
@@ -143,6 +152,7 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("Nivel al que moverse: "+level);
         camara.StartLevel();
+        BackGround.StartLevel();
         SceneManager.LoadScene(level);
     }
 
@@ -160,6 +170,7 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("Shop Opened");
         camara.ShowShopAnim();
+        BackGround.ShowShopAnim();
 
     }
 
@@ -167,6 +178,7 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("Shop Closed");
         camara.CloseShopAnim();
+        BackGround.CloseShopAnim();
     }
 
     public void ShowLevels()
@@ -174,12 +186,14 @@ public class MenuController : MonoBehaviour
 
         Debug.Log("Levels Opened");
         camara.ShowLevelsAnim();
+        BackGround.ShowLevelsAnim();
     }
 
     public void CloseLevels()
     {
         Debug.Log("Levels Closed");
         camara.CloseLevelsAnim();
+        BackGround.CloseLevelsAnim();
     }
 
     public void ShowOptions()
@@ -187,12 +201,14 @@ public class MenuController : MonoBehaviour
 
         Debug.Log("Options Opened");
         camara.ShowOptionsAnim();
+        BackGround.ShowOptionsAnim();
     }
 
     public void CloseOptions()
     {
         Debug.Log("Options Closed");
         camara.CloseOptionsAnim();
+        BackGround.CloseOptionsAnim();
     }
 
     //Shop
@@ -202,6 +218,7 @@ public class MenuController : MonoBehaviour
         StartCoroutine(PopUpClick(Extramoney, "It's Free to Play ... at least for now."));
         playerInstance._GameData.gameData._dineroP += 1000000;
         playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+        MoneyCountText();
     }
 
 
@@ -274,16 +291,16 @@ public class MenuController : MonoBehaviour
             CursorButtons.gameObject.transform.GetChild(2).gameObject.transform.GetChild(1).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         };
 
-
+        Debug.Log("Esta guardado2? "+playerInstance._GameData.gameData._Map3);
         GameObject MapButtons = MapsMenu.transform.GetChild(4).gameObject;
-
+        Debug.Log("Esta guardado? "+playerInstance._GameData.gameData._Map3);
         if (playerInstance._GameData.gameData._Map3 == true)
         {
-            MapButtons.gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            MapButtons.gameObject.transform.GetChild(2).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         };
         if (playerInstance._GameData.gameData._Map4 == true)
         {
-            MapButtons.gameObject.transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            MapButtons.gameObject.transform.GetChild(3).gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         };
 
     }

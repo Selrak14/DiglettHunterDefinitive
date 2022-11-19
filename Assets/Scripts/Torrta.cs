@@ -36,7 +36,7 @@ public class Torrta : MonoBehaviour
         Debug.Log("DESPLAZAR");
         bala.transform.position += m;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.3f);
         isBala = false;
         Destroy(bala);
 
