@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static System.Math;
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
@@ -48,6 +49,7 @@ public class MenuController : MonoBehaviour
         if (currentScene == 2) { 
             camara = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
             WelcomePlayer();
+            MoneyCountText();
         }
     }
 
@@ -154,9 +156,9 @@ public class MenuController : MonoBehaviour
 
     public void ShowShop()
     {
-
         Debug.Log("Shop Opened");
         camara.ShowShopAnim();
+
     }
 
     public void CloseShop()
@@ -197,6 +199,24 @@ public class MenuController : MonoBehaviour
     {
         StartCoroutine(PopUpClick(Extramoney));
     }
+
+
+    //Update text with money count
+    public float CurrentMoney()
+    {
+        Debug.Log("Obtaining Money...");
+        return  playerInstance._GameData.gameData._dineroP;
+    }
+    public void MoneyCountText()
+    {
+        Debug.Log("hOLA");
+        TextMeshProUGUI Content = GameObject.Find($"/Shop/Money/MoneyCount").GetComponent<TextMeshProUGUI>();
+        float currentMoney = CurrentMoney();
+
+        Debug.Log("Current Money" + currentMoney);
+        Content.SetText($"{Round(currentMoney,2)}");
+    }
+
 
     //Customization Buttons
     public void ShowMaps()
