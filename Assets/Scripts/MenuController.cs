@@ -193,16 +193,12 @@ public class MenuController : MonoBehaviour
     //Customization Buttons
     public void ShowMaps()
     {
-        GameObject.Find("/Customization/Buttons/MapButton").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Menu/selector");
-        GameObject.Find("/Customization/Buttons/PointerButton").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Menu/selectordesactivado");
         MapsMenu.SetActive(true);
         PointersMenu.SetActive(false);
     }
 
     public void ShowPointers()
     {
-        GameObject.Find("/Customization/Buttons/PointerButton").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Menu/selector");
-        GameObject.Find("/Customization/Buttons/MapButton").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Menu/selectordesactivado");
         PointersMenu.SetActive(true);
         MapsMenu.SetActive(false);
     }
@@ -217,7 +213,7 @@ public class MenuController : MonoBehaviour
     //Pointers
     public void ChangePointer(int number)
     {
-        string imagePointer = GameObject.Find($"/Customization/PointerSelectionWindow/Buttons/Pointer{number}/Image").GetComponent<Image>().sprite.ToString().Split(' ')[0];
+        string imagePointer = GameObject.Find($"/Customization/PointerSelectionWindow/Pointer{number}/Image").GetComponent<Image>().sprite.ToString().Split(' ')[0];
         Debug.Log(imagePointer);
         playerInstance._GameData.gameData._PointerCustom = imagePointer;
         playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
@@ -230,26 +226,17 @@ public class MenuController : MonoBehaviour
 
     // Map Changer
 
-
-
-
-    IEnumerator PopUpClick()
-    {
-        ConfirmationPopup.SetActive(true);
-        yield return new WaitForSeconds(1);
-        ConfirmationPopup.SetActive(false);
-    }
     public void ChangeMap(int Map)
     {
         //GameObject mapButton = GameObject.Find($"/Customization/MapSelection/Map{Map+1}/Sprite");
-        StartCoroutine(PopUpClick());
-
+        ConfirmationPopup.SetActive(true);
+        //
+        //
         Debug.Log("Map "+Map);
-        Sprite imageSelection = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map + 1}").GetComponent<Image>().sprite;
-        GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = imageSelection;
+        GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = sprites[Map];
 
         // Guardar Nombre en preferencias
-        string imageMap = imageSelection.ToString().Split(' ')[0];
+        string imageMap = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map+1}").GetComponent<Image>().sprite.ToString().Split(' ')[0];
         playerInstance._GameData.gameData._MapaSkinCustom = imageMap;
         playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
     }
