@@ -1130,7 +1130,7 @@ MonoBehaviour:
   HabBomba: {fileID: 1668379437029470046, guid: 19adea0bceb13a348be6a3b59efa7286, type: 3}
   ModoContraReloj: 0
   Torreta: {fileID: 636105726}
-  Vida: 500
+  Vida: 100
   DiglettList:
   - {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
   - {fileID: 8551307676804739593, guid: 70a50cf3735d2034690fcbc8b96af4d4, type: 3}
@@ -1147,8 +1147,7 @@ MonoBehaviour:
   DiglettBase: {fileID: 6918249967917864323, guid: e084243e3ad068e44bd8e6931a004700, type: 3}
   TimeBeteenSpawn: 2
   TiempoEsperaInicio: 3
-  _Timer: 0
-  TiempoDeLaPartida: 30
+  TiempoDeLaPartida: 1
   TiempoDePartidaReverso: 1
   Acelerador: 0.1
 --- !u!4 &1118138958
