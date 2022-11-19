@@ -18,8 +18,8 @@ public class MenuController : MonoBehaviour
     public GameObject PointersMenu;
     public GameObject ConfirmationPopup;
     public GameObject Extramoney;
+    public GameObject Warning;
     public TextMeshProUGUI WelcomeText;
-    public Sprite[] sprites;
     CursorMode cursorMode;
 
     private int currentScene;
@@ -235,6 +235,8 @@ public class MenuController : MonoBehaviour
         MapsMenu.SetActive(false);
     }
 
+
+    //LogOut Button
     public void LogOut()
     {
         PlayerPrefs.SetInt("AutoLogIn", 0);
@@ -242,57 +244,80 @@ public class MenuController : MonoBehaviour
         LoadGame("LoggIn");
     }
 
-    //Pointers
+    //Cursor
     public void ChangePointer(int number)
     {
         bool isLocked = true;
-        TextMeshProUGUI Content = GameObject.Find($"/Customization/PointerSelectionWindow/Warning/Content").GetComponent<TextMeshProUGUI>();
 
         if ((number == 3 && isLocked) || (number == 1 && isLocked))
         {
-            Content.SetText("Buy it at the store");
-            StartCoroutine(PopUpClick(GameObject.Find($"/Customization/PointerSelectionWindow/Warning")));
+            StartCoroutine(PopUpClick(Warning, "Buy it at the store"));
         }
         else if (number == 2)
         {
-            Content.SetText("Available in the next update!!");
-            StartCoroutine(PopUpClick(GameObject.Find($"/Customization/PointerSelectionWindow/Warning")));
+            StartCoroutine(PopUpClick(Warning, "Available in the next update!!"));
         }
         else {
 
         //Save pointer
         string imagePointer = GameObject.Find($"/Customization/PointerSelectionWindow/Buttons/Pointer{number}/Image").GetComponent<Image>().sprite.ToString().Split(' ')[0];
         Debug.Log(imagePointer);
-        playerInstance._GameData.gameData._PointerCustom = imagePointer;
-        playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
-        Texture2D cursorTexture = Resources.Load<Texture2D>($"Pointer/{imagePointer}");
-        cursorMode = CursorMode.Auto;
-        Vector2 hotSpot = Vector2.zero;
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+        if (imagePointer != playerInstance._GameData.gameData._PointerCustom) { 
+
+            //save value
+            playerInstance._GameData.gameData._PointerCustom = imagePointer;
+            playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+
+            //change cursor
+            Texture2D cursorTexture = Resources.Load<Texture2D>($"Pointer/{imagePointer}");
+            cursorMode = CursorMode.Auto;
+            Vector2 hotSpot = Vector2.zero;
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+            //show popup
+            StartCoroutine(PopUpClick(ConfirmationPopup));
+
+            }
+            else
+            {
+                Debug.Log("Cursor already in use");
+            }
         }
     }
 
     // Map Changer
 
 
-    IEnumerator PopUpClick(GameObject PopUp)
+    IEnumerator PopUpClick(GameObject PopUp, string text=null)
     {
         PopUp.SetActive(true);
+        if (text != null)
+            PopUp.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().SetText($"{text}");
         yield return new WaitForSeconds(1);
         PopUp.SetActive(false);
     }
     public void ChangeMap(int Map)
     {
-        //GameObject mapButton = GameObject.Find($"/Customization/MapSelection/Map{Map+1}/Sprite");
-        StartCoroutine(PopUpClick(ConfirmationPopup));
 
-        Debug.Log("Map "+Map);
-        Sprite imageSelection = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map}").GetComponent<Image>().sprite;
-        GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = imageSelection;
+        bool isLocked = true;
 
-        // Guardar Nombre en preferencias
-        string imageMap = imageSelection.ToString().Split(' ')[0];
-        playerInstance._GameData.gameData._MapaSkinCustom = imageMap;
-        playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+        if ((Map == 3 && isLocked) || (Map == 4 && isLocked))
+        {
+            StartCoroutine(PopUpClick(Warning, "Buy it at the store"));
+        }
+        else
+        {
+            StartCoroutine(PopUpClick(ConfirmationPopup));
+
+            Debug.Log("Map " + Map);
+            Sprite imageSelection = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map}").GetComponent<Image>().sprite;
+            GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = imageSelection;
+
+            // Guardar Nombre en preferencias
+            string imageMap = imageSelection.ToString().Split(' ')[0];
+            playerInstance._GameData.gameData._MapaSkinCustom = imageMap;
+            playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+        }
     }
 }

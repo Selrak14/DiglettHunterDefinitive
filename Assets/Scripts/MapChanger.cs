@@ -10,6 +10,6 @@ public class MapChanger : MonoBehaviour, IPointerEnterHandler
     public int Map;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = MenuController.sprites[Map];
+        GameObject.FindGameObjectWithTag("Map").GetComponent<Image>().sprite = GameObject.Find($"/Customization/MapSelectionWindow/Buttons/Map{Map}").GetComponent<Image>().sprite;
     }
 }
