@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using static System.Math;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MenuController : MonoBehaviour
 {
@@ -197,7 +198,9 @@ public class MenuController : MonoBehaviour
     // + Button
     public void ExtraMoney()
     {
-        StartCoroutine(PopUpClick(Extramoney));
+        StartCoroutine(PopUpClick(Extramoney, "It's Free to Play ... at least for now."));
+        playerInstance._GameData.gameData._dineroP += 1000000;
+        playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
     }
 
 
@@ -209,13 +212,43 @@ public class MenuController : MonoBehaviour
     }
     public void MoneyCountText()
     {
-        Debug.Log("hOLA");
         TextMeshProUGUI Content = GameObject.Find($"/Shop/Money/MoneyCount").GetComponent<TextMeshProUGUI>();
         float currentMoney = CurrentMoney();
 
         Debug.Log("Current Money" + currentMoney);
         Content.SetText($"{Round(currentMoney,2)}");
     }
+
+
+    //Buy item
+    public void BuyItem()
+    {
+        TextMeshProUGUI selectedGameObjectText = EventSystem.current.currentSelectedGameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+        if (selectedGameObjectText.text != "Sold Out") {
+        float itemCost = float.Parse(selectedGameObjectText.text);
+        Debug.Log(itemCost);
+
+        if (playerInstance._GameData.gameData._dineroP < itemCost)
+        {
+            StartCoroutine(PopUpClick(Extramoney, "You are too poor to buy it"));
+        }
+        else
+        {
+            float moneyLeft = playerInstance._GameData.gameData._dineroP - itemCost;
+
+            playerInstance._GameData.gameData._dineroP = moneyLeft;
+            playerInstance._GameData.writeFile(playerInstance._GameData.gameData._username, playerInstance._GameData.gameData);
+            selectedGameObjectText.text = "Sold Out";
+            MoneyCountText();
+        }
+        }
+        else
+        {
+            StartCoroutine(PopUpClick(Extramoney, "You already own this item"));
+        }
+    }
+
+
 
 
     //Customization Buttons
@@ -247,7 +280,7 @@ public class MenuController : MonoBehaviour
     //Cursor
     public void ChangePointer(int number)
     {
-        bool isLocked = true;
+        bool isLocked = false;
 
         if ((number == 3 && isLocked) || (number == 1 && isLocked))
         {
@@ -300,7 +333,7 @@ public class MenuController : MonoBehaviour
     public void ChangeMap(int Map)
     {
 
-        bool isLocked = true;
+        bool isLocked = false;
 
         if ((Map == 3 && isLocked) || (Map == 4 && isLocked))
         {
