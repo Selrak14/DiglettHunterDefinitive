@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class ClassicGameMode : MonoBehaviour
 {
     TheGame playerInstance;
+    public string TipoDePartida = "ClassicMode";
     public GameObject MenuDePausa;
     public GameObject MenuDeFin;
     [SerializeField] private TextMeshProUGUI TextoPuntuacion;
@@ -301,7 +302,7 @@ public class ClassicGameMode : MonoBehaviour
     }
     private void JuegoTerminado()
     {
-        // playerInstance.GuardarPartidaJSON(PlayerPrefs.GetString("LastUser"), PuntuacionPartida, (int) TiempoDeLaPartida , ModoContraReloj);
+        playerInstance._GameData.GuardarClassicGame(playerInstance._GameData.gameData,TipoDePartida, playerInstance._GameData.gameData._username, PuntuacionPartida, TiempoDeLaPartida, 0);
         juegoHaTerminado = true;
         Debug.Log("JUEGO TERMINADO");
         paused=!paused;

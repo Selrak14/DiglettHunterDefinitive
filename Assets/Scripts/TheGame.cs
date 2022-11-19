@@ -11,30 +11,6 @@ public class TheGame : MonoBehaviour
     public GameDataManager _GameData;
     
 
-    // VARIABLES DE TODOS LOS JUGADORES
-    string LastUser;
-    // Variables del jugador
-    int AutomaticLogIn;
-
-    void Start()
-    {
-        LastUser = PlayerPrefs.GetString("LastUser");
-
-    }
-
-
-    public string GetUserName()
-    {
-        string username = PlayerPrefs.GetString("username");
-        return username;
-    }
-
-
-    public void OnLoggInAutomatico()
-    {
-        SetName(LastUser);
-    }
-
     // public void SetUserVariable(string Key, string value)
     // {
     //     string name = GetUserName();
@@ -42,11 +18,6 @@ public class TheGame : MonoBehaviour
 
     // }
 
-    public string GetUserVariable(string key)
-    {
-        Debug.Log("Que Buscas?; "+PlayerPrefs.GetString("LastUser")+"."+key);
-        return PlayerPrefs.GetString(PlayerPrefs.GetString("LastUser")+"."+key);
-    }
 
     public string SetName(string name)
     {
@@ -85,7 +56,7 @@ public class TheGame : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)){
             Debug.Log("Pressed secondary button.");
-            SceneManager.LoadScene("LeaderBoard");
+            // SceneManager.LoadScene("LeaderBoard");
         }
         
         if (Input.GetMouseButtonDown(2))
@@ -96,6 +67,11 @@ public class TheGame : MonoBehaviour
         //     _GameData.DANGERDELETEFILE();
         //     Debug.Log("JJJJ");
         //     }
+    }
+
+    public void LogOut()
+    {
+        PlayerPrefs.SetInt("AutoLogIn");
     }
 }
 

@@ -16,15 +16,15 @@ public class LeaderBoard : MonoBehaviour
     public List<GameObject> _Tablas = new List<GameObject>();
     // public Transform rowsParent;
 
-    GameDataManager playerInstance;
+    GameDataManager DataManagerInstance;
     // public GameObject tablaClassic;
     
     // Start is called before the first frame update
     void Start()
     {
         // OnLoadLeaderboard();
-        playerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameDataManager>();
-        playerInstance.LeaderBoardShow(rowPrefab,rowsParent);
+        DataManagerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameDataManager>();
+        DataManagerInstance.LeaderBoardShow(rowPrefab,rowsParent);
     }
 
     // Update is called once per frame

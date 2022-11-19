@@ -76,16 +76,18 @@ public class GameDataManager : MonoBehaviour
         File.WriteAllText(_saveFile, jsonString);
     }
 
-    public void GuardarClassicGame(string GameType, string _jugador, int _puntuacion, int _tiempo, int _dinero)
+    public void GuardarClassicGame(PlayerGameData _g,string GameType, string _jugador, int _puntuacion, float _tiempo, int _dinero)
     {
-        
+        Partidas _partida = new Partidas(_jugador, _puntuacion, _tiempo, _dinero);
+        if(GameType == "ClassicMode")_g.PartidasClasicas.Add(_partida);
+        if(GameType == "ContraReloj")_g.PartidasContraReloj.Add(_partida);
+        if(GameType == "Batalla")_g.PartidasBatalla.Add(_partida);
+        writeFile(_jugador, _g);
     }
 
     public void LeaderBoardShow(GameObject rowPrefab, List<Transform> rowsParent)
     {
         Debug.Log("leaderboard");
-        string fileContents = File.ReadAllText(saveFile);
-        gameData = JsonUtility.FromJson<PlayerGameData>(fileContents);
 
         // TODAS LAS LISTAS 
         List<Partidas> SortedListClassic = gameData.PartidasClasicas.OrderByDescending(o=>o.puntuacion).ToList();

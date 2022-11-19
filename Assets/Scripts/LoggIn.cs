@@ -22,9 +22,6 @@ public class LoggIn : MonoBehaviour
         // }
         // else
 
-        
-
-           
         if(GameObject.FindGameObjectsWithTag("GameController").Length == 0)
         {
             Debug.Log("NO HAY THE GAME");
@@ -48,8 +45,8 @@ public class LoggIn : MonoBehaviour
         else
         {
             name.text = PlayerPrefs.GetString("LastUser");
-            Debug.Log("NO SOY NUEVO" + playerInstance.GetUserVariable("AutomaticLogIn"));
-            loginToggle.isOn = (playerInstance.GetUserVariable("AutomaticLogIn") == "1") ? true : false;
+            Debug.Log("NO SOY NUEVO" + PlayerPrefs.GetInt("AutoLogIn"));
+            loginToggle.isOn = (PlayerPrefs.GetInt("AutoLogIn") == 1) ? true : false;
             Debug.Log("ENTRAR? "+loginToggle.isOn);
         }
 
@@ -57,7 +54,7 @@ public class LoggIn : MonoBehaviour
 		if(loginToggle.isOn)
         {
             Debug.Log("ENTRA AUTOMATICO");
-            playerInstance.OnLoggInAutomatico();
+            
             LevelLoad();
         }
 	}
@@ -75,6 +72,8 @@ public class LoggIn : MonoBehaviour
         // WAIT
         Subida.SetTrigger("Levantar");
         yield return new WaitForSeconds(1f);
+        if(loginToggle.isOn) PlayerPrefs.SetInt("AutoLogIn", 1);
+        PlayerPrefs.Save();
         LevelLoad();
     }
 

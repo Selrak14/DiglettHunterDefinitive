@@ -22,11 +22,11 @@ public class Partidas
 {
     public string jugador;
     public int puntuacion;
-    public int tiempo;
+    public float tiempo;
     public int dinero;
     
 
-    public Partidas(string _jugador, int _puntuacion, int _tiempo, int _dinero)
+    public Partidas(string _jugador, int _puntuacion, float _tiempo, int _dinero)
     {
         this.jugador = _jugador;
         this.puntuacion = _puntuacion;
