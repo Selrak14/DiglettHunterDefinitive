@@ -78,9 +78,9 @@ public class GameDataManager : MonoBehaviour
 
     public void GuardarClassicGame(PlayerGameData _g, string GameType, string _jugador, int _puntuacion, float _tiempo, float _dinero)
     {
-        Partidas _partida = new Partidas(_jugador, _puntuacion, _tiempo, _dinero);
-        if(GameType == "ClassicMode")_g.PartidasClasicas.Add(_partida);
-        if(GameType == "ContraReloj")_g.PartidasContraReloj.Add(_partida);
+        Partidas _partida = new Partidas("Dani", 10, 16, 1);
+        if (GameType == "ClassicMode") _g.PartidasClasicas.Add(_partida);
+        if(GameType == "ContraReloj") _g.PartidasContraReloj.Add(_partida);
         if(GameType == "Batalla")_g.PartidasBatalla.Add(_partida);
         writeFile(_jugador, _g);
     }

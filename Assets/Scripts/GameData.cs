@@ -5,9 +5,9 @@
 public class PlayerGameData
 {
     public string _username;
-    public List<Partidas> PartidasClasicas;
-    public List<Partidas> PartidasContraReloj;
-    public List<Partidas> PartidasBatalla;
+    public List<Partidas> PartidasClasicas = new List<Partidas>();
+    public List<Partidas> PartidasContraReloj = new List<Partidas>();
+    public List<Partidas> PartidasBatalla = new List<Partidas>();
     public float _dineroP = 0;
 
     // CONFIGURACION DEL USUARIO
